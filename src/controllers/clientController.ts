@@ -56,7 +56,7 @@ export class ClientController {
             const id = req.params.id;
             const client = await getRepository(Cliente).findOne(id);
             
-            if (client?.Estado!=0) {
+            if (client?.Estado!==0) {
                 const clientOne = await createQueryBuilder("Cliente")
                                 .leftJoinAndSelect("Cliente.mascotas", "mascota")
                                 .leftJoinAndSelect("Cliente.ventas","venta")

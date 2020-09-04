@@ -27,7 +27,9 @@ const passportClass = new PassportClass()
 export class App {
 
     private app: Application;
-    constructor(private port?: number | string){
+    private port: string | number;
+    constructor(){
+        this.port = 8080 || process.env.PORT;
         this.app = express();
         this.settings();
         this.middlewares();
@@ -38,7 +40,7 @@ export class App {
      * settings
      */
     public settings(): void {
-        this.app.set('port',this.port || process.env.PORT)
+        this.app.set('port',this.port)
     }
 
     /**

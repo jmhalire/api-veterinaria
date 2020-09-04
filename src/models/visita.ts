@@ -35,8 +35,8 @@ export class Visita{
     CreatedAt: Date;
 
     @ManyToOne(type => Mascota, mascota => mascota.visitas,{nullable: false})
-    mascota: Mascota
+    mascota: Mascota;
 
     @ManyToOne(type => Cliente, cliente => cliente.visitas,{nullable: false})
-    cliente: Cliente
+    cliente: Cliente;
 }
