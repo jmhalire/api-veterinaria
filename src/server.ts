@@ -6,7 +6,7 @@ import { DataBaseConnect } from "./database"
  */
 function main() {
     //iniciando servidor en el puerto 8080
-    const app = new App(8080);
+    const app = new App();
     app.startServer();
 
     //iniciando la conexion a la base de datos
