@@ -1,0 +1,40 @@
+import { Router } from "express";
+import { UserController } from "../controllers/userController";
+import { PassportClass } from "../controllers/passport";
+import { AuthRole } from "../middlewares/role";
+
+// se crea una instancia o un objeto de Auth para utilizar en la clase
+const userCrtl = new UserController()
+const passport = new PassportClass();
+const roleAdmin = new AuthRole('admin');
+const roleCliente = new AuthRole('cliente')
+
+export class UserRouter {
+
+    private router: Router;
+
+    constructor() {
+        //inicializamos el router
+        this.router = Router()
+        //se ejecuta el metodo routes() para  grabar todas las rutas
+        this.routes();
+    }
+
+    /**
+     * routes
+    */
+    private routes():void {
+        
+        this.router.post( '/user/create', userCrtl.createUser);
+        this.router.get( '/user/list', passport.Authenticate(), roleAdmin.verificate, userCrtl.getUsers );
+        this.router.post( '/user/edit/:id', passport.Authenticate(), roleAdmin.verificate, userCrtl.updateUser );
+        this.router.post( '/user/delete/:id', passport.Authenticate(), roleAdmin.verificate, userCrtl.deleteUser);
+    }
+
+    /**
+     * getRouter=> metodo que devuelve el objeto router creado para usar en express
+    */
+    public getRouter(): Router {
+        return this.router;
+    }
+}
