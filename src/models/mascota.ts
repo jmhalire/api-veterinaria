@@ -3,6 +3,7 @@ import { Cliente } from "./cliente";
 import { Vacuna } from "./vacuna";
 import { Reserva } from "./reserva";
 import { Visita } from "./visita";
+import { Cita } from './cita';
 
 @Entity()
 export class Mascota {
@@ -39,4 +40,7 @@ export class Mascota {
 
     @OneToMany(type => Visita, visita => visita.mascota)
     visitas: Visita[]
+
+    @OneToMany(type => Cita, cita => cita.mascota)
+    citas: Visita[]
 }

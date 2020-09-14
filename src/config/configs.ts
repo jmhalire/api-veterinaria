@@ -1,4 +1,4 @@
 export default {
-    JWTSECRET: 'mysecretjwtusers'
-  };
+  JWTSECRET: 'mysecretjwtusers'
+};
   

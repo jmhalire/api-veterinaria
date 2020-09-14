@@ -3,8 +3,8 @@ import bcrypt from "bcrypt";
 import { Venta } from "./venta";
 
 export enum UserRole {
-    ADMIN = "admin",
-    CLIENTE = "cliente"
+    ADMIN = "ADMIN",
+    GENERAL = "GENERAL"
 }
 @Entity()
 export class User {
@@ -33,7 +33,7 @@ export class User {
     @Column({type: "varchar", length:80, nullable: false})
     Password: string;
 
-    @Column({type: "enum", enum: UserRole, default: UserRole.CLIENTE})
+    @Column({type: "enum", enum: UserRole, default: UserRole.GENERAL})
     Role: UserRole;
 
     @Column({type: "int"})

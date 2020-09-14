@@ -13,7 +13,7 @@ export class DataBaseConnect {
    /**
     * connectDataBase
     */
-   public async connectDataBase() {
+   public async connectDataBase(): Promise<void> {
       try {
          this.connection = await createConnection(this.orm);
          console.log("DB connection");

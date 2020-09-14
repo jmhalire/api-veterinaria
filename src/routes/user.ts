@@ -24,11 +24,10 @@ export class UserRouter {
      * routes
     */
     private routes():void {
-        
-        this.router.post( '/user/create', userCrtl.createUser);
+        this.router.post( '/user/create', passport.Authenticate(), roleAdmin.verificate, userCrtl.createUser);
         this.router.get( '/user/list', passport.Authenticate(), roleAdmin.verificate, userCrtl.getUsers );
         this.router.post( '/user/edit/:id', passport.Authenticate(), roleAdmin.verificate, userCrtl.updateUser );
-        this.router.post( '/user/delete/:id', passport.Authenticate(), roleAdmin.verificate, userCrtl.deleteUser);
+        this.router.delete( '/user/delete/:id', passport.Authenticate(), roleAdmin.verificate, userCrtl.deleteUser);
     }
 
     /**

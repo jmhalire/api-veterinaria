@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn} from "typeorm";
 import { Venta } from "./venta";
 import { Producto } from "./producto";
 
@@ -9,14 +9,21 @@ export class DetalleVenta {
     id: number;
 
     @Column({type: "float"})
-    PercioUnitario: number;
+    Punitario: number;
 
     @Column({type: "int"})
     Cantidad: number;
+
+    @Column({type: "float"})
+    Total: number;
 
     @ManyToOne(type => Venta, venta => venta.detalleVentas,{nullable: false})
     ventas: Venta
 
     @ManyToOne(type => Producto, producto => producto.detalleVentas,{nullable: false})
-    productos: Producto
+    producto: Producto
+
+    @Column()
+    @CreateDateColumn()
+    CreatedAt: Date;
 }

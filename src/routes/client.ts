@@ -22,11 +22,11 @@ export class ClientRouter {
     */
     private routes():void {
         
-        this.router.get( '/client/list',passport.Authenticate(), clientCrtl.getClients);
-        this.router.get( '/client/:id', passport.Authenticate(), clientCrtl.getClient );
-        this.router.post( '/client/add', passport.Authenticate(), clientCrtl.createClient)
-        this.router.post( '/client/edit', passport.Authenticate(), clientCrtl.updateClient );
-        this.router.delete( '/client/delete/:id', passport.Authenticate(), clientCrtl.deleteClient);
+        this.router.get('/client/list',passport.Authenticate(), clientCrtl.getClients);
+        this.router.get('/client/:id', passport.Authenticate(), clientCrtl.getClientMascotas);
+        this.router.post('/client/add', passport.Authenticate(), clientCrtl.createClient)
+        this.router.post('/client/edit', passport.Authenticate(), clientCrtl.updateClient );
+        this.router.delete('/client/delete/:id', passport.Authenticate(), clientCrtl.deleteClient);
     }
 
     /**

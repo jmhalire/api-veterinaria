@@ -15,9 +15,12 @@ export class Venta {
     @ManyToOne(type => User, user => user.ventas,{nullable: false})
     usuario: User;
 
-    @OneToMany(type => DetalleVenta, detalleVenta => detalleVenta.ventas,{nullable: false})
+    @OneToMany(type => DetalleVenta, detalleVenta => detalleVenta.ventas,{nullable: false , cascade: true})
     detalleVentas: DetalleVenta[];
 
+    @Column({type: "float"})
+    Total: number; 
+    
     @Column()
     @CreateDateColumn()
     CreatedAt: Date;

@@ -3,8 +3,6 @@ import { getRepository, IsNull } from "typeorm";
 import { User } from "../models/usuario";
 import { Jsonwebtoken } from "../middlewares/jwt";
 
-//interfaces
-import { LoginResponse } from "../interfaces/loginResponse";
 
 export class AuthController {
 
@@ -14,42 +12,30 @@ export class AuthController {
     //metodo login
     public async signin(req: Request, res: Response): Promise<Response> {
         try {
-            let datosResponse: LoginResponse;
             const { Email, Password } = req.body;
             if(!(Email && Password)){
-                datosResponse = {
-                    value : false,
-                    message: 'usuario y contraseña requerido',
-                    token : '',
-                }
-                return res.status(400).json(datosResponse)
+                return res.status(400).json({value : false, message: 'usuario y contraseña requerido'})
             }
-
             const user = await getRepository(User).findOne({Email})
 
             if(!user){
-                datosResponse = {
-                    value : false,
-                    message: 'correo incorrecto',
-                    token : ''
-                }
-                return res.status(400).json(datosResponse)
+                return res.status(400).json({value : false, message: 'correo incorrecto'})
             }
             if(!user.validPassword(Password)){
-                datosResponse = {
-                    value : false,
-                    message: 'contraseña incorrecta',
-                    token : ''
-                }
-                return res.status(400).json(datosResponse)
+                return res.status(400).json({value : false, message: 'contraseña incorrecta'})
             }
             //creamos su toke del usuario registrado
             const token =  new Jsonwebtoken(user).createToken();
            
-            datosResponse = {
+            let datosResponse = {
                 value : true,
-                message: '',
-                token: token
+                token: token,
+                user: {
+                    Names: user.Names,
+                    FirstName: user.FirstName,
+                    LastName: user.LastName,
+                    Role: user.Role
+                }
             }
 
             return res.json(datosResponse);

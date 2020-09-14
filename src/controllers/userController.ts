@@ -16,11 +16,11 @@ export class UserController {
             }
             //gurdadamos al usuario obteniendo sus datos
             const newUser = getRepository(User).create(datos)
-            await getRepository(User).save(newUser)
+            let userSave = await getRepository(User).save(newUser)
 
             /* //creamos su toke del usuario registrado
             const token = new Jsonwebtoken(UserDate).createToken(); */
-            return res.status(200).json({message: `El usuario ${datos.Names} ha sido creado`});
+            return res.status(200).json({message: `El usuario ${userSave.Names} ha sido creado`});
 
         } catch (error) {
             return res.status(404).json(error)
@@ -30,11 +30,9 @@ export class UserController {
     //OBTENEMOS TODOS LOS USUARIOS
     public async getUsers(req: Request, res: Response): Promise<Response> {
         try {
-            console.log('aqui');
             const users = await getRepository(User).find({
                 select : ["id","Names","FirstName", "LastName","Celular", "Address","Email","Role","CreatedAt","UpdatedAt"]
-            });  
-            console.log('asdmvldsmdmmlmqui');      
+            });       
             if (users.length > 0) {
                 return res.json(users);
             } else {
@@ -69,7 +67,7 @@ export class UserController {
     public async deleteUser(req: Request, res: Response): Promise<Response> {
         try {
             await getRepository(User).delete(req.params.id);
-            return res.json({message: "usuario elimninado!!"})
+            return res.json({message: "Un usuario ha sido elimninado del sistema."})
         } catch (error) {
             return res.json(error);
         }

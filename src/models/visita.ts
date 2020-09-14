@@ -26,10 +26,7 @@ export class Visita{
 
     @Column({type: "varchar", length: 10})
     EstaPagado: string;
-
-    @Column({type: "int"})
-    Estado: number
-
+    
     @Column()
     @CreateDateColumn()
     CreatedAt: Date;

@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 import { Mascota } from "./mascota";
 import { Venta } from "./venta";
 import { Visita } from "./visita";
+import { Cita } from './cita';
 
 @Entity()
 export class Cliente {
@@ -43,4 +44,7 @@ export class Cliente {
 
     @OneToMany(() => Visita, visita => visita.cliente)
     visitas: Visita[]
+
+    @OneToMany(type => Cita, cita => cita.mascota)
+    citas: Visita[]
 }

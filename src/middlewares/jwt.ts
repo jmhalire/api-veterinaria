@@ -6,11 +6,10 @@ export class Jsonwebtoken {
 
     constructor(private user:User | any) { }
 
-    public createToken() {
+    public createToken(): string {
         return jwt.sign(
             {id: this.user.id, email: this.user.Email},
-            config.JWTSECRET,
-            {expiresIn: '4h'}
+            config.JWTSECRET
         )
     }
 }

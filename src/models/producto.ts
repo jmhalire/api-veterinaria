@@ -20,7 +20,7 @@ export class Producto {
     Estado: number
 
 
-    @OneToMany(type => DetalleVenta, detalleVenta => detalleVenta.productos)
+    @OneToMany(type => DetalleVenta, detalleVenta => detalleVenta.producto)
     detalleVentas: DetalleVenta[]
 
 }

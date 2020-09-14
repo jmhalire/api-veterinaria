@@ -1,15 +1,13 @@
 import { Request, Response } from "express"
 import { getRepository, FindManyOptions, FindOneOptions, FindConditions, createQueryBuilder } from "typeorm";
 import { Mascota } from "../models/mascota";
-import { Visita } from "../models/visita";
-import { Vacuna } from "../models/vacuna";
 export class MacotaController {
 
     constructor() {
     }
 
     //CREAR UN NUEVO USUARIO
-    public async createMascota(req: Request, res: Response) {
+    public async createMascota(req: Request, res: Response): Promise<Response> {
         try {
             const datos = <Mascota>req.body;
             const mascotaNombre = await getRepository(Mascota).findOne({ Nombres: datos.Nombres });
@@ -25,7 +23,7 @@ export class MacotaController {
             await getRepository(Mascota).save(newMascota);
             return res.json({ value: true, message: `${datos.Nombres.toUpperCase()}...  Nueva mascota agregada.` });
         } catch (error) {
-            res.status(400).json(error)
+            return res.status(400).json(error)
         }
     }
 
