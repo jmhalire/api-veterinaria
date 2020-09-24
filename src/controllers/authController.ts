@@ -12,8 +12,8 @@ export class AuthController {
     //metodo login
     public async signin(req: Request, res: Response): Promise<Response> {
         try {
+            //se obtiene los datos de req.body
             const { Email, Password } = req.body;
-            console.log(req.body)
             if(!(Email && Password)){
                 return res.status(400).json({value : false, message: 'usuario y contraseña requerido'})
             }
