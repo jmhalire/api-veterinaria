@@ -15,4 +15,5 @@ function main() {
     dataBase.connectDataBase();
 } 
 
+//llamanos anuestro metoodo principal para arrancar el servidor
 main();

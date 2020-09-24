@@ -7,7 +7,7 @@ import { AuthRole } from "../middlewares/role";
 const userCrtl = new UserController()
 const passport = new PassportClass();
 const roleAdmin = new AuthRole('admin');
-const roleCliente = new AuthRole('cliente')
+const roleCliente = new AuthRole('cliente');
 
 export class UserRouter {
 
