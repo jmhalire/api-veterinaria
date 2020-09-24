@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { report } from "process";
 import { PassportClass } from "../controllers/passport";
 import { ReporteController } from "../controllers/reporteController";
 
