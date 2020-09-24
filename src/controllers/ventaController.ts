@@ -64,6 +64,7 @@ export class VentaController {
     // ================ ARTICULOS   ========================
     public async saveArticulo(req: Request, res: Response): Promise<Response> {
         try {
+            //obtenemos el articulo o producto enviado desde el front
             const articulo = <Articulo>req.body;
             const newArticulo = getRepository(Articulo).create(articulo);
             await getRepository(Articulo).save(newArticulo);
