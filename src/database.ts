@@ -5,7 +5,6 @@ import dataConfig from './config/dataBase'
 export class DataBaseConnect {
 
    orm: any
-   connection: any;
    constructor() { 
       this.orm = dataConfig;
    }
@@ -15,7 +14,7 @@ export class DataBaseConnect {
     */
    public async connectDataBase(): Promise<void> {
       try {
-         this.connection = await createConnection(this.orm);
+         let connection = await createConnection(this.orm);
          console.log("DB connection");
       } catch (error) {
          console.log(error);
