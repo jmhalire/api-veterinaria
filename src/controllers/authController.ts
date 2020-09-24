@@ -28,6 +28,7 @@ export class AuthController {
             //creamos su toke del usuario registrado
             const token =  new Jsonwebtoken(user).createToken();
            
+            //se devuelve los datos a la appp cliente
             let datosResponse = {
                 value : true,
                 token: token,
