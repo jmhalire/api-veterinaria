@@ -13,6 +13,7 @@ export class AuthController {
     public async signin(req: Request, res: Response): Promise<Response> {
         try {
             const { Email, Password } = req.body;
+            console.log(req.body)
             if(!(Email && Password)){
                 return res.status(400).json({value : false, message: 'usuario y contraseña requerido'})
             }
@@ -37,11 +38,14 @@ export class AuthController {
                     Role: user.Role
                 }
             }
-
             return res.json(datosResponse);
-
         } catch (error) {
             return res.status(404).json(error)
         }
+    }
+
+    public logout(req: Request, res: Response) {
+        req.logout();
+        return res.status(201).json({message:'Usted cerró sesión en el sistema. Gracias'})
     }
 }

@@ -1,4 +1,4 @@
-import { getRepository, createQueryBuilder } from "typeorm";
+import { getRepository, createQueryBuilder, getConnection } from "typeorm";
 import { Request, Response } from "express"
 
 //interface
@@ -14,12 +14,12 @@ export class ServiController {
 
     // = ==================== citas de clientes y pacientes =  ===========================
     //listar todas las citas
-    public async listaCitas(req: Request, res: Response): Promise<Response> {
+    public async listCitasPendient(req: Request, res: Response): Promise<Response> {
         try {
             const listaCitas = await createQueryBuilder("Cita")
                                 .leftJoinAndSelect("Cita.mascota", "mascota")
                                 .leftJoinAndSelect("Cita.cliente","cliente")
-                                .where("Cita.Estado = :Estado", { Estado: 1 })
+                                .where("Cita.Estado = :Estado", { Estado: 0 })
                                 .getMany();
             return res.json(listaCitas);
 
@@ -35,6 +35,7 @@ export class ServiController {
     public async addCita(req: Request, res: Response): Promise<Response> {
         try {
             const datos = req.body
+            console.log(datos);
             //guardar datos de la mascota
             const newCita = getRepository(Cita).create(datos);
             await getRepository(Cita).save(newCita);
@@ -57,19 +58,59 @@ export class ServiController {
         } catch (error) {
             return res.status(404).json(error);
         }
-
     }
 
-    //guardar una nueva visita
-    public async addVisita(req: Request, res: Response) {
+    //acuatizando las visitas
+    public async updateCitaState(req: Request, res: Response) {
+        console.log(req.body);
         try {
-            const datos = req.body
+            const idCita = req.params.id;
+            await getConnection()
+                    .createQueryBuilder()
+                    .update(Cita)
+                    .set({ Estado: 1 })
+                    .where("id = :id", { id: idCita })
+                    .execute();
+            setTimeout(()=>{
+                return res.json({ message: "Se atendio una cita" })
+            },500)
+        } catch (error) {
+            return res.json(error);
+        }
+    }
+
+
+    //guardar una nueva visita
+    public async addVisita(req: Request, res: Response): Promise<Response> {
+        try {
+            const datos = req.body            
             //guardar datos de la mascota
             const newVisita = getRepository(Visita).create(datos);
             await getRepository(Visita).save(newVisita);
             return res.json({ message: 'visita registrada correctamente' });
         } catch (error) {
-            res.status(400).json(error)
+            return res.status(400).json(error)
+        }
+    }
+
+    //acuatizando las visitas
+    public async updateVista(req: Request, res: Response) {
+        try {
+            const idVisistas = <any[]>req.body;
+            console.log(idVisistas);
+            idVisistas.forEach(async idVisita => {
+                await getConnection()
+                    .createQueryBuilder()
+                    .update(Visita)
+                    .set({ EstaPagado: "SI" })
+                    .where("id = :id", { id: idVisita })
+                    .execute();
+            });
+            setTimeout(()=>{
+                return res.json({ message: "Estado de pagos del cliente actualizado" })
+            },500)
+        } catch (error) {
+            return res.json(error);
         }
     }
 

@@ -24,6 +24,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.13",
+    "request": "^2.88.2",
     "typeorm": "^0.2.25"
   },
   "devDependencies": {
@@ -38,6 +39,7 @@
     "@types/node": "^14.6.0",
     "@types/passport": "^1.0.4",
     "@types/passport-jwt": "^3.0.3",
+    "@types/request": "^2.48.5",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "ts-node": "^8.10.2",

@@ -11,6 +11,8 @@ import { ClientRouter } from "./routes/client";
 import { MascotRouter } from "./routes/mascot";
 import { ServiceRouter } from "./routes/service";
 import { VentaRouter } from "./routes/venta";
+import { InventarioRouter } from "./routes/inventario";
+import { ReportRouter } from "./routes/reportRouter";
 
 
 import { PassportClass } from "./controllers/passport";
@@ -23,6 +25,8 @@ const clientRouter = new ClientRouter();
 const mascotRouter = new MascotRouter();
 const serviceRouter = new ServiceRouter();
 const ventaRouter = new VentaRouter();
+const inventarioRouter = new InventarioRouter();
+const reportRouter = new ReportRouter();
 
 const passportClass = new PassportClass()
 
@@ -31,7 +35,7 @@ export class App {
     private app: Application;
     private port: string | number;
     constructor(){
-        this.port = 3200 || process.env.PORT;
+        this.port = 8080 || process.env.PORT;
         this.app = express();
         this.settings();
         this.middlewares();
@@ -69,6 +73,8 @@ export class App {
         this.app.use(mascotRouter.getRouter());
         this.app.use(serviceRouter.getRouter());
         this.app.use(ventaRouter.getRouter());
+        this.app.use(inventarioRouter.getRouter());
+        this.app.use(reportRouter.getRouter());
 
     }
 

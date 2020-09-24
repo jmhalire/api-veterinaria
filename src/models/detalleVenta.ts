@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, OneToMany} from "typeorm";
 import { Venta } from "./venta";
 import { Producto } from "./producto";
 
@@ -18,7 +18,7 @@ export class DetalleVenta {
     Total: number;
 
     @ManyToOne(type => Venta, venta => venta.detalleVentas,{nullable: false})
-    ventas: Venta
+    venta: Venta
 
     @ManyToOne(type => Producto, producto => producto.detalleVentas,{nullable: false})
     producto: Producto

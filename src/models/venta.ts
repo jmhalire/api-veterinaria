@@ -15,7 +15,7 @@ export class Venta {
     @ManyToOne(type => User, user => user.ventas,{nullable: false})
     usuario: User;
 
-    @OneToMany(type => DetalleVenta, detalleVenta => detalleVenta.ventas,{nullable: false , cascade: true})
+    @OneToMany(type => DetalleVenta, detalleVenta => detalleVenta.venta,{nullable: false , cascade: true})
     detalleVentas: DetalleVenta[];
 
     @Column({type: "float"})

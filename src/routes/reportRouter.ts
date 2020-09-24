@@ -1,12 +1,13 @@
 import { Router } from "express";
-import { VentaController } from "../controllers/ventaController";
+import { report } from "process";
 import { PassportClass } from "../controllers/passport";
+import { ReporteController } from "../controllers/reporteController";
 
 // se crea una instancia o un objeto de Auth para utilizar en la clase
-const ventaCrtl = new VentaController()
+const reportCrtl = new ReporteController()
 const passport = new PassportClass();
 
-export class VentaRouter {
+export class ReportRouter {
 
     private router: Router;
 
@@ -22,9 +23,9 @@ export class VentaRouter {
     */
     private routes():void {
         
-        this.router.get('/venta/list',passport.Authenticate(), ventaCrtl.getVentas);
-        this.router.get('/venta/:id',passport.Authenticate(), ventaCrtl.getVenta);
-        this.router.post('/venta/save', passport.Authenticate(), ventaCrtl.saveVenta);
+        this.router.get('/report/product-favory',passport.Authenticate(), reportCrtl.getProductFavory);
+        this.router.get('/weather', reportCrtl.getWether);
+
 
     }
 

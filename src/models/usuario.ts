@@ -36,12 +36,14 @@ export class User {
     @Column({type: "enum", enum: UserRole, default: UserRole.GENERAL})
     Role: UserRole;
 
-    @Column({type: "int"})
+    @Column({type: "int",default:1})
     Estado: number
 
+    @Column()
     @CreateDateColumn()
     CreatedAt: Date;
     
+    @Column()
     @UpdateDateColumn()
     UpdatedAt: Date;
 

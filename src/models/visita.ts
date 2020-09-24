@@ -31,6 +31,10 @@ export class Visita{
     @CreateDateColumn()
     CreatedAt: Date;
 
+    @Column()
+    @CreateDateColumn()
+    UpdatedAt: Date;
+
     @ManyToOne(type => Mascota, mascota => mascota.visitas,{nullable: false})
     mascota: Mascota;
 

@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne } from "typeorm";
-import { Articulo } from "./articulo";
+import { Producto } from "./producto";
 @Entity()
 export class Categoria {
 
@@ -20,6 +20,6 @@ export class Categoria {
     @UpdateDateColumn()
     UpdatedAt: Date;
 
-    @OneToMany(type => Articulo, articulo => articulo.categoria)
-    articulos: Articulo[]
+    @OneToMany(type => Producto, producto => producto.categoria)
+    productos: Producto[]
 }

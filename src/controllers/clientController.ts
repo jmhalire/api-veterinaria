@@ -11,9 +11,9 @@ export class ClientController {
     public async createClient(req: Request, res: Response): Promise<Response> {
         try {
             const datos = <Cliente>req.body;
-
             const clienteEmail = await getRepository(Cliente).findOne({ Email: datos.Email });
-            if (clienteEmail) {
+            
+            if (clienteEmail && datos.Email!=="-"){
                 const clienteCelular = await getRepository(Cliente).findOne({ Celular: datos.Celular });
                 if (clienteCelular) {
                     return res.status(404).json({ value: false, message: "Ya existe un cliente con ese correo y numero telefonico" });
@@ -38,6 +38,7 @@ export class ClientController {
     public async getClients(req: Request, res: Response): Promise<Response> {
         try {
             const listClient = await createQueryBuilder("Cliente")
+                .orderBy("Cliente.Nombres")
                 .leftJoinAndSelect("Cliente.mascotas", "mascotas")
                 .leftJoinAndSelect("Cliente.ventas", "ventas")
                 .leftJoinAndSelect("Cliente.visitas", "visitas")
@@ -57,13 +58,13 @@ export class ClientController {
     public async getClientMascotas(req: Request, res: Response) {
         try {
             const id = req.params.id;
-            const client = await getRepository(Cliente).findOne(id);
+            const client = await getRepository<Cliente>(Cliente).findOne(id);
 
             if (client?.Estado !== 0) {
                 const clients = await createQueryBuilder("Cliente")
                     .leftJoinAndSelect("Cliente.mascotas", "mascota")
                     .where("Cliente.id = :id", { id: id })
-                    .getMany();
+                    .getOne();
                 return res.json(clients)
             } else {
                 return res.status(404).json({ value: false, message: 'No existe cliente' })

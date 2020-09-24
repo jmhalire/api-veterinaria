@@ -26,8 +26,8 @@ export class Cita {
     @Column({type: "time"})
     Hora: Date;
 
-    @Column({type: "int"})
-    Estado: number
+    @Column({type: "int",default:0})
+    Estado: number;
 
     @Column()
     @CreateDateColumn()

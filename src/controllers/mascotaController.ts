@@ -10,6 +10,8 @@ export class MacotaController {
     public async createMascota(req: Request, res: Response): Promise<Response> {
         try {
             const datos = <Mascota>req.body;
+            console.log(datos);
+            
             const mascotaNombre = await getRepository(Mascota).findOne({ Nombres: datos.Nombres });
             if (mascotaNombre) {
                 const mascotaDuenio = await getRepository(Mascota).findOne({ cliente: datos.cliente });
@@ -21,7 +23,7 @@ export class MacotaController {
             //guardar datos de la mascota
             const newMascota = getRepository(Mascota).create(datos);
             await getRepository(Mascota).save(newMascota);
-            return res.json({ value: true, message: `${datos.Nombres.toUpperCase()}...  Nueva mascota agregada.` });
+            return res.json({ message: `${datos.Nombres.toUpperCase()}...  Nueva mascota agregada.` });
         } catch (error) {
             return res.status(400).json(error)
         }
@@ -32,7 +34,6 @@ export class MacotaController {
         try {
             const client = await getRepository(Mascota).find();
             return res.json(client);
-
         } catch (error) {
             return res.status(404).json({ error });
         }
@@ -43,7 +44,7 @@ export class MacotaController {
             const mascotaOne = await createQueryBuilder("Mascota")
                 .leftJoinAndSelect("Mascota.cliente", "cliente")
                 .leftJoinAndSelect("Mascota.vacunas", "vacunas")
-                .leftJoinAndSelect("Mascota.reservas", "reservas")
+                .leftJoinAndSelect("Mascota.citas", "citas")
                 .leftJoinAndSelect("Mascota.visitas", "visitas")
                 .where("Mascota.id = :id", { id: req.params.id })
                 .getOne();
@@ -57,8 +58,9 @@ export class MacotaController {
     //EDITAR USUARIO
     public async updateMascota(req: Request, res: Response): Promise<Response> {
         try {
-            const id = req.params.id;
+            const id = req.body.id;
             const mascot = await getRepository(Mascota).findOne(id);
+
             if (mascot) {
                 getRepository(Mascota).merge(mascot, req.body);
                 await getRepository(Mascota).save(mascot);

@@ -28,7 +28,7 @@ export default {
 //    "host": "boepuu0mouwevp1eeedw-mysql.services.clever-cloud.com",
 //    "port": 3306,
 //    "username": "ue8asp5qd2kvvk1b",
-//    "password": "sjWVuyIZwZY9ItiRMRhA",
+//    "password": "6uxNcuZgyIQdMFDs09Ol",
 //    "database": "boepuu0mouwevp1eeedw",
 //    "synchronize": true,
 //    "logging": false,
@@ -47,5 +47,13 @@ export default {
 //       "subscribersDir": "src/subscriber"
 //    }
 // }
+
+
+// MYSQL_ADDON_HOST=boepuu0mouwevp1eeedw-mysql.services.clever-cloud.com
+// MYSQL_ADDON_DB=boepuu0mouwevp1eeedw
+// MYSQL_ADDON_USER=ue8asp5qd2kvvk1b
+// MYSQL_ADDON_PORT=3306
+// MYSQL_ADDON_PASSWORD=6uxNcuZgyIQdMFDs09Ol 
+// MYSQL_ADDON_URI=mysql://ue8asp5qd2kvvk1b:6uxNcuZgyIQdMFDs09Ol@boepuu0mouwevp1eeedw-mysql.services.clever-cloud.com:3306/boepuu0mouwevp1eeedw
 
 //connection URL : mysql://ue8asp5qd2kvvk1b:sjWVuyIZwZY9ItiRMRhA@boepuu0mouwevp1eeedw-mysql.services.clever-cloud.com:3306/boepuu0mouwevp1eeedw
