@@ -41,7 +41,6 @@ export class ReporteController {
 			}, function (error, response, body) {
 				if (!error && response.statusCode === 200) {
 					// Pintamos la respuesta JSON en navegador.
-					console.log(body);
 					res.send(body)
 				}else{
 					res.send([]);

@@ -94,21 +94,22 @@ export class ServiController {
     }
 
     //acuatizando las visitas
-    public async updateVista(req: Request, res: Response) {
+    public async updateVisita(req: Request, res: Response) {
         try {
-            const idVisistas = <any[]>req.body;
-            console.log(idVisistas);
-            idVisistas.forEach(async idVisita => {
-                await getConnection()
-                    .createQueryBuilder()
-                    .update(Visita)
-                    .set({ EstaPagado: "SI" })
-                    .where("id = :id", { id: idVisita })
-                    .execute();
+            const idVisitas = <any[]>req.body;
+            console.log(idVisitas);
+            idVisitas.forEach(async idVisita => {
+                await getRepository(Visita).update(idVisita, {EstaPagado: "SI"});
+                // await getConnection()
+                //     .createQueryBuilder()
+                //     .update(Visita)
+                //     .set({ EstaPagado: "SI" })
+                //     .where("id = :id", { id: idVisita })
+                //     .execute();
             });
             setTimeout(()=>{
                 return res.json({ message: "Estado de pagos del cliente actualizado" })
-            },500)
+            },1000)
         } catch (error) {
             return res.json(error);
         }
