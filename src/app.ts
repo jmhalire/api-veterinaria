@@ -4,6 +4,8 @@ import morgan from "morgan";
 import helmet from "helmet"
 import bodyParser from "body-parser";
 import passport from "passport"
+
+//importamos todas las rutas que existen para agregar a express
 import { IndexRouter } from "./routes/index";
 import { AuthRouter } from "./routes/auth"
 import { UserRouter } from "./routes/user"
@@ -79,7 +81,7 @@ export class App {
     }
 
     /**
-     * startServer
+     * startServer (metodo que inia nuestro servidor)
      */
     public startServer(): void {
         this.app.listen(this.app.get('port'),()=>{
