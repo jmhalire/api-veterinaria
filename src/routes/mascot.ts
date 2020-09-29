@@ -15,6 +15,7 @@ export class MascotRouter {
     }
 
     private routes(): void{
+        this.router.get('/mascot/count', passport.Authenticate(), mascotCrtl.countMascota);
         this.router.get( '/mascot/list',passport.Authenticate(), mascotCrtl.getMascotas);
         this.router.get( '/mascot/:id', passport.Authenticate(), mascotCrtl.getMascota );
         this.router.post( '/mascot/add', passport.Authenticate(), mascotCrtl.createMascota)

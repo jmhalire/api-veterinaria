@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, UpdateDateColumn } from "typeorm";
 import { Mascota } from "./mascota";
 import { Cliente } from "./cliente";
 
@@ -32,7 +32,7 @@ export class Visita{
     CreatedAt: Date;
 
     @Column()
-    @CreateDateColumn()
+    @UpdateDateColumn()
     UpdatedAt: Date;
 
     @ManyToOne(type => Mascota, mascota => mascota.visitas,{nullable: false})

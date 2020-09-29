@@ -5,6 +5,7 @@ import { User } from "../models/usuario";
 import { Producto } from "../models/producto";
 import { Proveedor } from "../models/proveedor";
 import { Categoria } from "../models/categoria";
+import { DetalleVenta } from "../models/detalleVenta";
 
 
 export class VentaController {
@@ -13,15 +14,23 @@ export class VentaController {
     }
 
     //guardar una nueva venta
-    public async saveVenta(req: Request, res: Response): Promise<Response> {
+    public async saveVenta(req: Request, res: Response){
 
         try {
             const datos = <Venta>req.body;
             let user: User;
             user = <User>req.user;
             datos.usuario = user;
+            const detalleVentas = <DetalleVenta[]>datos.detalleVentas;
+            detalleVentas.forEach( async (detalle) => {
+                const Produc= await <Producto | any>getRepository(Producto).findOne({
+                    select: ['Stock'],
+                    where: { id : detalle.producto }
+                });
+                await getRepository(Producto).update(detalle.producto, { Stock : Produc.Stock - detalle.Cantidad});
+            })
 
-            //gurdadamos la venta con sus detalles
+            //guardadamos la venta con sus detalles
             const newFac = getRepository(Venta).create(datos);
             await getRepository(Venta).save(newFac);
 

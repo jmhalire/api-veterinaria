@@ -1,11 +1,19 @@
+require('dotenv').config()
 import { App } from "./app";
 import { DataBaseConnect } from "./database"
+
 
 /**
  * main
  */
 
 function main() {
+    // let value = {
+    //     JWTSECRET: process.env.JWTSECRET,
+    //     TOKEN_API_WEATHER: process.env.TOKEN_API_WEATHER
+    // }
+    // console.log(value);
+    
     //iniciando servidor en el puerto 8080
     const app = new App();
     app.startServer();
