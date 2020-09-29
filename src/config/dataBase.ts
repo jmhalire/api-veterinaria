@@ -33,13 +33,13 @@ export default {
    "synchronize": true,
    "logging": false,
    "entities": [
-      "src/models/**/*.ts"
+      "src/models/*.ts"
    ],
    "migrations": [
-      "src/migration/**/*.ts"
+      "src/migration/*.ts"
    ],
    "subscribers": [
-      "src/subscriber/**/*.ts"
+      "src/subscriber/*.ts"
    ],
    "cli": {
       "entitiesDir": "src/models",
