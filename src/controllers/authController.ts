@@ -3,7 +3,6 @@ import { getRepository, IsNull } from "typeorm";
 import { User } from "../models/usuario";
 import { Jsonwebtoken } from "../middlewares/jwt";
 
-
 export class AuthController {
 
     constructor() { }
