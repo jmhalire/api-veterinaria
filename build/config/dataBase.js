@@ -1,4 +1,7 @@
 "use strict";
+
+const { join } = require("path");
+
 // export default {
 //    "type": "mysql",
 //    "host": "localhost",
@@ -34,7 +37,7 @@ exports.default = {
     "synchronize": true,
     "logging": false,
     "entities": [
-        "build/models/*.js"
+        __dirname + "/models/*.js"
     ],
     "migrations": [
         "build/migration/*.js"
