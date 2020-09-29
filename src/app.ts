@@ -37,7 +37,7 @@ export class App {
     private app: Application;
     private port: string | number;
     constructor(){
-        this.port = 8080 || process.env.PORT;
+        this.port = process.env.PORT || 8080;
         this.app = express();
         this.settings();
         this.middlewares();

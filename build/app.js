@@ -34,7 +34,7 @@ var reportRouter = new reportRouter_1.ReportRouter();
 var passportClass = new passport_2.PassportClass();
 var App = /** @class */ (function () {
     function App() {
-        this.port = 8080 || process.env.PORT;
+        this.port = process.env.PORT || 8080;
         this.app = express_1.default();
         this.settings();
         this.middlewares();
