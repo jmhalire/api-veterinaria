@@ -15,7 +15,8 @@ export class ServiceRouter {
     }
 
     public routes(): void{
-        this.router.get( '/visita/lista', passport.Authenticate(), service.listaVisitas)
+        this.router.get( '/visita/count', passport.Authenticate(), service.countVisita);
+        this.router.get( '/visita/lista', passport.Authenticate(), service.listaVisitas);
         this.router.post( '/visita/add', passport.Authenticate(), service.addVisita);
         this.router.post( '/visita/update', passport.Authenticate(), service.updateVisita);
         this.router.post( '/vacuna/add', passport.Authenticate(), service.addVacuna);

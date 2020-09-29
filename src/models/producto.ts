@@ -9,9 +9,6 @@ export class Producto {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({type: "varchar",length: 8})
-    Codigo: string;
-
     @Column({type: "varchar",length: 40})
     Nombre: string;
 

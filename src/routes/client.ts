@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Response, Request, Router } from "express";
 import { ClientController } from "../controllers/clientController";
 import { PassportClass } from "../controllers/passport";
 
@@ -21,7 +21,7 @@ export class ClientRouter {
      * routes
     */
     private routes():void {
-        
+        this.router.get('/client/count',passport.Authenticate(), clientCrtl.countClient)
         this.router.get('/client/list',passport.Authenticate(), clientCrtl.getClients);
         this.router.get('/client/:id', passport.Authenticate(), clientCrtl.getClientMascotas);
         this.router.post('/client/add', passport.Authenticate(), clientCrtl.createClient)

@@ -84,4 +84,16 @@ export class MacotaController {
         }
     }
 
+    //cantidad total de mascotas en el sistema
+    public async countMascota(req: Request, res: Response): Promise<Response> {
+        try {
+            const count = await getRepository(Mascota)
+                .createQueryBuilder("Mascota").getCount();
+            return res.json({count : count});
+            
+        } catch (error) {
+            return res.status(404).json(error)
+        }
+    }
+
 }

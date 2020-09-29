@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { getRepository, createQueryBuilder, getConnection } from "typeorm";
 import { Cliente } from "../models/cliente";
+import { User } from "../models/usuario";
 
 export class ClientController {
 
@@ -12,8 +13,8 @@ export class ClientController {
         try {
             const datos = <Cliente>req.body;
             const clienteEmail = await getRepository(Cliente).findOne({ Email: datos.Email });
-            
-            if (clienteEmail && datos.Email!=="-"){
+
+            if (clienteEmail && datos.Email !== "-") {
                 const clienteCelular = await getRepository(Cliente).findOne({ Celular: datos.Celular });
                 if (clienteCelular) {
                     return res.status(404).json({ value: false, message: "Ya existe un cliente con ese correo y numero telefonico" });
@@ -46,7 +47,7 @@ export class ClientController {
                 .getMany();
 
             //const client = await getRepository(Cliente).find({Estado: 1}); 
-            
+
             return res.json(listClient);
 
         } catch (error) {
@@ -107,6 +108,18 @@ export class ClientController {
             return res.json({ message: 'usuario eliminado' })
         } catch (error) {
             return res.json(error);
+        }
+    }
+
+    //cantidad de clientes registrados en el sistema
+    public async countClient(req: Request, res: Response): Promise<Response> {
+        try {
+            const count = await getRepository(Cliente)
+                .createQueryBuilder("Cliente").getCount();
+            return res.json({count : count});
+            
+        } catch (error) {
+            return res.status(404).json(error)
         }
     }
 }

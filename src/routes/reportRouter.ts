@@ -1,10 +1,16 @@
+import { verify } from "crypto";
 import { Router } from "express";
 import { PassportClass } from "../controllers/passport";
 import { ReporteController } from "../controllers/reporteController";
+import { AuthRole } from "../middlewares/role";
+
+
 
 // se crea una instancia o un objeto de Auth para utilizar en la clase
 const reportCrtl = new ReporteController()
 const passport = new PassportClass();
+const roleAdmin = new AuthRole('admin');
+
 
 export class ReportRouter {
 
@@ -22,10 +28,12 @@ export class ReportRouter {
     */
     private routes():void {
         
-        this.router.get('/report/product-favory',passport.Authenticate(), reportCrtl.getProductFavory);
+        this.router.get('/report/ingreso-meses', passport.Authenticate(), roleAdmin.verificate, reportCrtl.getIngresoXmeses);
+        this.router.get('/report/ingreso-hoy', passport.Authenticate(), roleAdmin.verificate, reportCrtl.getIngresoHoy);
+        this.router.get('/report/visita-meses', passport.Authenticate(), roleAdmin.verificate, reportCrtl.getvisitasXmeses);
+        this.router.get('/report/product-favory', passport.Authenticate(), roleAdmin.verificate, reportCrtl.getProductFavory);
+
         this.router.get('/weather', reportCrtl.getWether);
-
-
     }
 
     /**

@@ -45,21 +45,6 @@ export class ServiController {
         }
     }
 
-    // ===================== vicitas de clientes y pacientes   =============================
-    public async listaVisitas(req: Request, res: Response): Promise<Response> {
-        try {
-            const listVisitas = await createQueryBuilder("Visita")
-                                .leftJoinAndSelect("Visita.mascota", "mascota")
-                                .leftJoinAndSelect("Visita.cliente","cliente")
-                                .getMany();
-                                
-            return res.json(listVisitas);
-
-        } catch (error) {
-            return res.status(404).json(error);
-        }
-    }
-
     //acuatizando las visitas
     public async updateCitaState(req: Request, res: Response) {
         console.log(req.body);
@@ -76,6 +61,22 @@ export class ServiController {
             },500)
         } catch (error) {
             return res.json(error);
+        }
+    }
+
+
+    // ===================== vicitas de clientes y pacientes   =============================
+    public async listaVisitas(req: Request, res: Response): Promise<Response> {
+        try {
+            const listVisitas = await createQueryBuilder("Visita")
+                                .leftJoinAndSelect("Visita.mascota", "mascota")
+                                .leftJoinAndSelect("Visita.cliente","cliente")
+                                .getMany();
+                                
+            return res.json(listVisitas);
+
+        } catch (error) {
+            return res.status(404).json(error);
         }
     }
 
@@ -99,13 +100,13 @@ export class ServiController {
             const idVisitas = <any[]>req.body;
             console.log(idVisitas);
             idVisitas.forEach(async idVisita => {
-                await getRepository(Visita).update(idVisita, {EstaPagado: "SI"});
-                // await getConnection()
-                //     .createQueryBuilder()
-                //     .update(Visita)
-                //     .set({ EstaPagado: "SI" })
-                //     .where("id = :id", { id: idVisita })
-                //     .execute();
+                //await getRepository(Visita).update(idVisita, {EstaPagado: "SI"});
+                await getConnection()
+                    .createQueryBuilder()
+                    .update(Visita)
+                    .set({ EstaPagado: "SI" })
+                    .where("id = :id", { id: idVisita })
+                    .execute();
             });
             setTimeout(()=>{
                 return res.json({ message: "Estado de pagos del cliente actualizado" })
@@ -115,6 +116,17 @@ export class ServiController {
         }
     }
 
+    //cantidad de visitas
+    public async countVisita(req: Request, res: Response): Promise<Response> {
+        try {
+            const count = await getRepository(Visita)
+                .createQueryBuilder("Visita").getCount();
+            return res.json({count : count});
+            
+        } catch (error) {
+            return res.status(404).json(error)
+        }
+    }
 
     //guardar una nueva visita
     public async addVacuna(req: Request, res: Response): Promise<Response> {
