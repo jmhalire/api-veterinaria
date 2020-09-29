@@ -50,19 +50,13 @@ var DataBaseConnect = /** @class */ (function () {
             "database": process.env.MYSQL_ADDON_DB,
             "synchronize": true,
             "logging": false,
-            "entities": [
-                __dirname + "/models/*.js"
-            ],
-            "migrations": [
-                "src/migration/*.js"
-            ],
-            "subscribers": [
-                "src/subscriber/*.js"
-            ],
+            "entities": [ "build/models/*.js" ],
+            "migrations": [ "src/migration/*.js" ],
+            "subscribers": [ "src/subscriber/*.js" ],
             "cli": {
-                "entitiesDir": "src/models",
-                "migrationsDir": "src/migration",
-                "subscribersDir": "src/subscriber"
+                "entitiesDir": "build/models",
+                "migrationsDir": "build/migration",
+                "subscribersDir": "build/subscriber"
             }
         };
     }

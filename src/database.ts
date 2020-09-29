@@ -14,15 +14,9 @@ export class DataBaseConnect {
          "database": process.env.MYSQL_ADDON_DB,
          "synchronize": true,
          "logging": false,
-         "entities": [
-            __dirname + "/models/*.ts"
-         ],
-         "migrations": [
-            "src/migration/*.ts"
-         ],
-         "subscribers": [
-            "src/subscriber/*.ts"
-         ],
+         "entities": [ "src/models/*.ts" ],
+         "migrations": [ "src/migration/*.ts" ],
+         "subscribers": [ "src/subscriber/*.ts" ],
          "cli": {
             "entitiesDir": "src/models",
             "migrationsDir": "src/migration",
