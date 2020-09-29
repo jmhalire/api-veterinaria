@@ -35,30 +35,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DataBaseConnect = void 0;
 require("reflect-metadata");
 var typeorm_1 = require("typeorm");
+var config_1 = __importDefault(require("./configs/config"));
 var DataBaseConnect = /** @class */ (function () {
     function DataBaseConnect() {
-        this.orm = {
-            "type": "mysql",
-            "host": process.env.MYSQL_ADDON_HOST,
-            "port": process.env.MYSQL_ADDON_PORT,
-            "username": process.env.MYSQL_ADDON_USER,
-            "password": process.env.MYSQL_ADDON_PASSWORD,
-            "database": process.env.MYSQL_ADDON_DB,
-            "synchronize": true,
-            "logging": false,
-            "entities": [ "build/models/**/*.js" ],
-            "migrations": [ "build/migration/**/*.js" ],
-            "subscribers": [ "build/subscriber/**/*.js" ],
-            "cli": {
-                "entitiesDir": "build/models",
-                "migrationsDir": "build/migration",
-                "subscribersDir": "build/subscriber"
-            }
-        };
+        this.orm = config_1.default;
     }
     /**
      * connectDataBase

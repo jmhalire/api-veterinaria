@@ -1,28 +1,13 @@
+import { config } from "dotenv/types";
 import "reflect-metadata";
 import { createConnection } from "typeorm";
+import connecDB from "./configs/config";
 
 export class DataBaseConnect {
 
    orm: any
    constructor() { 
-      this.orm = {
-         "type": "mysql",
-         "host": process.env.MYSQL_ADDON_HOST,
-         "port": process.env.MYSQL_ADDON_PORT,
-         "username": process.env.MYSQL_ADDON_USER,
-         "password": process.env.MYSQL_ADDON_PASSWORD,
-         "database": process.env.MYSQL_ADDON_DB,
-         "synchronize": true,
-         "logging": false,
-         "entities": [ "src/models/*.ts" ],
-         "migrations": [ "src/migration/*.ts" ],
-         "subscribers": [ "src/subscriber/*.ts" ],
-         "cli": {
-            "entitiesDir": "src/models",
-            "migrationsDir": "src/migration",
-            "subscribersDir": "src/subscriber"
-         }
-      };
+      this.orm = connecDB
    }
 
    /**
