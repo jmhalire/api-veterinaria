@@ -34,13 +34,13 @@ exports.default = {
     "synchronize": true,
     "logging": false,
     "entities": [
-        "src/models/*.js"
+        "build/models/*.js"
     ],
     "migrations": [
-        "src/migration/*.js"
+        "build/migration/*.js"
     ],
     "subscribers": [
-        "src/subscriber/*.js"
+        "build/subscriber/*.js"
     ],
     "cli": {
         "entitiesDir": "src/models",
