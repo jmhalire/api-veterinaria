@@ -42,14 +42,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PassportClass = void 0;
 var passport_jwt_1 = require("passport-jwt");
 var passport_1 = __importDefault(require("passport"));
-var configs_1 = __importDefault(require("../config/configs"));
 var usuario_1 = require("../models/usuario");
 var typeorm_1 = require("typeorm");
 var PassportClass = /** @class */ (function () {
     function PassportClass() {
         this.options = {
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: configs_1.default.JWTSECRET
+            secretOrKey: process.env.JWTSECRET
         };
     }
     PassportClass.prototype.strategy = function () {

@@ -1,15 +1,14 @@
 import { Strategy, ExtractJwt } from "passport-jwt";
 import passport from "passport";
-import config from "../config/configs";
 import { User } from "../models/usuario";
-import { getRepository, Any } from "typeorm";
+import { getRepository } from "typeorm";
 
 export class PassportClass {
     options: any;
     constructor() {
         this.options = {
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: config.JWTSECRET
+            secretOrKey: process.env.JWTSECRET
         }
     }
 

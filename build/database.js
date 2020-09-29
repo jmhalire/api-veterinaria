@@ -35,17 +35,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DataBaseConnect = void 0;
 require("reflect-metadata");
 var typeorm_1 = require("typeorm");
-var dataBase_1 = __importDefault(require("./config/dataBase"));
 var DataBaseConnect = /** @class */ (function () {
     function DataBaseConnect() {
-        this.orm = dataBase_1.default;
+        this.orm = {
+            "type": "mysql",
+            "host": process.env.MYSQL_ADDON_HOST,
+            "port": process.env.MYSQL_ADDON_PORT,
+            "username": process.env.MYSQL_ADDON_USER,
+            "password": process.env.MYSQL_ADDON_PASSWORD,
+            "database": process.env.MYSQL_ADDON_DB,
+            "synchronize": true,
+            "logging": false,
+            "entities": [
+                __dirname + "/models/*.js"
+            ],
+            "migrations": [
+                "src/migration/*.js"
+            ],
+            "subscribers": [
+                "src/subscriber/*.js"
+            ],
+            "cli": {
+                "entitiesDir": "src/models",
+                "migrationsDir": "src/migration",
+                "subscribersDir": "src/subscriber"
+            }
+        };
     }
     /**
      * connectDataBase
@@ -74,3 +93,27 @@ var DataBaseConnect = /** @class */ (function () {
     return DataBaseConnect;
 }());
 exports.DataBaseConnect = DataBaseConnect;
+// export default {
+//    "type": "mysql",
+//    "host": "localhost",
+//    "port": 3306,
+//    "username": "root",
+//    "password": "jmhalire",
+//    "database": "dbveterinaria",
+//    "synchronize": true,
+//    "logging": false,
+//    "entities": [
+//       "src/models/**/*.ts"
+//    ],
+//    "migrations": [
+//       "src/migration/**/*.ts"
+//    ],
+//    "subscribers": [
+//       "src/subscriber/**/*.ts"
+//    ],
+//    "cli": {
+//       "entitiesDir": "src/models",
+//       "migrationsDir": "src/migration",
+//       "subscribersDir": "src/subscriber"
+//    }
+// }

@@ -2,8 +2,6 @@ import { Request, Response } from "express"
 import request from "request"
 import { getRepository, createQueryBuilder, getConnection } from "typeorm";
 
-import configs from '../config/configs'
-
 //type
 import { DetalleVenta } from "../models/detalleVenta";
 import { Venta } from "../models/venta";
@@ -116,7 +114,8 @@ export class ReporteController {
 
     //GET CLIMA
     public async getWether(req: Request, res: Response) {
-        const url = `http://api.openweathermap.org/data/2.5/weather?appid=${configs.TOKEN_API_WEATHER}a&units=metric&q=cusco`;
+        const TOKEN_API_WEATHER = process.env.TOKEN_API_WEATHER
+        const url = `http://api.openweathermap.org/data/2.5/weather?appid=${TOKEN_API_WEATHER}a&units=metric&q=cusco`;
         try {
             ///request.get()
             request({

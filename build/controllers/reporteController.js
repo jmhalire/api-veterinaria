@@ -42,7 +42,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReporteController = void 0;
 var request_1 = __importDefault(require("request"));
 var typeorm_1 = require("typeorm");
-var configs_1 = __importDefault(require("../config/configs"));
 //type
 var detalleVenta_1 = require("../models/detalleVenta");
 //controllers
@@ -169,9 +168,10 @@ var ReporteController = /** @class */ (function () {
     //GET CLIMA
     ReporteController.prototype.getWether = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var url;
+            var TOKEN_API_WEATHER, url;
             return __generator(this, function (_a) {
-                url = "http://api.openweathermap.org/data/2.5/weather?appid=" + configs_1.default.TOKEN_API_WEATHER + "a&units=metric&q=cusco";
+                TOKEN_API_WEATHER = process.env.TOKEN_API_WEATHER;
+                url = "http://api.openweathermap.org/data/2.5/weather?appid=" + TOKEN_API_WEATHER + "a&units=metric&q=cusco";
                 try {
                     ///request.get()
                     request_1.default({
