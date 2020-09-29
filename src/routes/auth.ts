@@ -20,7 +20,7 @@ export class AuthRouter {
      */
     private routes():void {
         this.router.post('/user/signin',authController.signin);
-        this.router.get('/user/logout', authController.logout);
+        this.router.get('/user/logout', authController.logout);        
     }
 
     /**

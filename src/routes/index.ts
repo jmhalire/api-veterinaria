@@ -1,4 +1,6 @@
 import { Router } from "express";
+import { getRepository } from "typeorm";
+import { User } from "../models/usuario";
 
 export class IndexRouter {
 
@@ -17,6 +19,22 @@ export class IndexRouter {
     private routes():void {
         this.router.get('/',(req,res)=>{
             res.send('bienvenidos')
+        });
+        this.router.get('/index', async (req,res)=>{
+            try {
+                const users = await getRepository(User).find({
+                    select: ["id", "Names", "FirstName", "LastName", "Celular", "Address", "Email", "Role", "CreatedAt", "UpdatedAt"],
+                    where: { Estado: 1 }
+            
+                });
+                if (users.length > 0) {
+                    return res.json(users);
+                } else {
+                    return res.status(400).json({ message: 'no hay resultados' });
+                }
+            } catch (error) {
+                return res.status(404).json({ error });
+            }
         });
     }
 
