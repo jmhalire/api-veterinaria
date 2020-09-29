@@ -50,9 +50,9 @@ var DataBaseConnect = /** @class */ (function () {
             "database": process.env.MYSQL_ADDON_DB,
             "synchronize": true,
             "logging": false,
-            "entities": [ "build/models/*.js" ],
-            "migrations": [ "src/migration/*.js" ],
-            "subscribers": [ "src/subscriber/*.js" ],
+            "entities": [ "build/models/**/*.js" ],
+            "migrations": [ "build/migration/**/*.js" ],
+            "subscribers": [ "build/subscriber/**/*.js" ],
             "cli": {
                 "entitiesDir": "build/models",
                 "migrationsDir": "build/migration",
