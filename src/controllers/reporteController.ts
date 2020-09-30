@@ -114,8 +114,8 @@ export class ReporteController {
 
     //GET CLIMA
     public async getWether(req: Request, res: Response) {
-        const TOKEN_API_WEATHER = process.env.TOKEN_API_WEATHER
-        const url = `http://api.openweathermap.org/data/2.5/weather?appid=${TOKEN_API_WEATHER}a&units=metric&q=cusco`;
+        const TOKEN_API_WEATHER = process.env.TOKEN_API_WEATHER;
+        const url = `http://api.openweathermap.org/data/2.5/weather?appid=${TOKEN_API_WEATHER}&units=metric&q=cusco`;
         try {
             ///request.get()
             request({

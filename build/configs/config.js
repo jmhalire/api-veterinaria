@@ -1,24 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var path_1 = require("path");
 exports.default = {
     "type": "mysql",
-    "host": process.env.MYSQL_ADDON_HOST,
-    "port": process.env.MYSQL_ADDON_PORT,
-    "username": process.env.MYSQL_ADDON_USER,
-    "password": process.env.MYSQL_ADDON_PASSWORD,
-    "database": process.env.MYSQL_ADDON_DB,
+    "url": process.env.MYSQL_ADDON_URI,
     "synchronize": true,
     "logging": false,
-    "entities": ["src/models/*.js"],
-    "migrations": ["src/migration/*.js"],
-    "subscribers": ["src/subscriber/*.js"],
+    "entities": [path_1.join(__dirname, '../models/*{.ts,.js}')],
+    "migrations": ["src/migration/*.ts"],
+    "subscribers": ["src/subscriber/*.ts"],
     "cli": {
         "entitiesDir": "src/models",
         "migrationsDir": "src/migration",
         "subscribersDir": "src/subscriber"
     }
 };
-
 // export default {
 //     "type": "mysql",
 //     "host": "localhost",

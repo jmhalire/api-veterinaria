@@ -1,4 +1,4 @@
-
+import { join } from "path";
 export default {
     "type": "mysql",
     "host": process.env.MYSQL_ADDON_HOST,
@@ -8,7 +8,7 @@ export default {
     "database": process.env.MYSQL_ADDON_DB,
     "synchronize": true,
     "logging": false,
-    "entities": ["src/models/*.ts"],
+    "entities": [join(__dirname, '../models/*{.ts,.js}')],
     "migrations": ["src/migration/*.ts"],
     "subscribers": ["src/subscriber/*.ts"],
     "cli": {

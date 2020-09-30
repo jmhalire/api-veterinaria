@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "build": "tsc --build",
     "dev": "nodemon src/server.ts --exec ts-node",
     "start": "node build/server.js"
   },
@@ -23,6 +24,7 @@
     "mysql": "^2.18.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "path": "^0.12.7",
     "reflect-metadata": "^0.1.13",
     "request": "^2.88.2",
     "typeorm": "^0.2.25"

@@ -171,7 +171,7 @@ var ReporteController = /** @class */ (function () {
             var TOKEN_API_WEATHER, url;
             return __generator(this, function (_a) {
                 TOKEN_API_WEATHER = process.env.TOKEN_API_WEATHER;
-                url = "http://api.openweathermap.org/data/2.5/weather?appid=" + TOKEN_API_WEATHER + "a&units=metric&q=cusco";
+                url = "http://api.openweathermap.org/data/2.5/weather?appid=" + TOKEN_API_WEATHER + "&units=metric&q=cusco";
                 try {
                     ///request.get()
                     request_1.default({
