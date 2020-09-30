@@ -1,11 +1,7 @@
 import { join } from "path";
 export default {
     "type": "mysql",
-    "host": process.env.MYSQL_ADDON_HOST,
-    "port": process.env.MYSQL_ADDON_PORT,
-    "username": process.env.MYSQL_ADDON_USER,
-    "password": process.env.MYSQL_ADDON_PASSWORD,
-    "database": process.env.MYSQL_ADDON_DB,
+    "url": process.env.MYSQL_ADDON_URI,
     "synchronize": true,
     "logging": false,
     "entities": [join(__dirname, '../models/*{.ts,.js}')],
