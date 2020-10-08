@@ -13,23 +13,23 @@ export class AuthController {
         try {
             //se obtiene los datos de req.body
             const { Email, Password } = req.body;
-            if(!(Email && Password)){
-                return res.status(400).json({value : false, message: 'usuario y contraseña requerido'})
+            if (!(Email && Password)) {
+                return res.status(400).json({ value: false, message: 'usuario y contraseña requerido' })
             }
-            const user = await getRepository(User).findOne({Email})
+            const user = await getRepository(User).findOne({ Email })
 
-            if(!user){
-                return res.status(400).json({value : false, message: 'correo incorrecto'})
+            if (!user) {
+                return res.status(400).json({ value: false, message: 'correo incorrecto' })
             }
-            if(!user.validPassword(Password)){
-                return res.status(400).json({value : false, message: 'contraseña incorrecta'})
+            if (!user.validPassword(Password)) {
+                return res.status(400).json({ value: false, message: 'contraseña incorrecta' })
             }
             //creamos su toke del usuario registrado
-            const token =  new Jsonwebtoken(user).createToken();
-           
+            const token = new Jsonwebtoken(user).createToken();
+
             //se devuelve los datos a la appp cliente
             let datosResponse = {
-                value : true,
+                value: true,
                 token: token,
                 user: {
                     Names: user.Names,
@@ -46,6 +46,6 @@ export class AuthController {
 
     public logout(req: Request, res: Response) {
         req.logout();
-        return res.status(201).json({message:'Usted cerró sesión en el sistema. Gracias'})
+        return res.status(201).json({ message: 'Usted cerró sesión en el sistema. Gracias' })
     }
 }
