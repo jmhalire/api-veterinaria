@@ -15,6 +15,7 @@ import { ServiceRouter } from "./routes/service";
 import { VentaRouter } from "./routes/venta";
 import { InventarioRouter } from "./routes/inventario";
 import { ReportRouter } from "./routes/reportRouter";
+import { ProveedRouter } from "./routes/proveed";
 
 
 import { PassportClass } from "./controllers/passport";
@@ -29,6 +30,7 @@ const serviceRouter = new ServiceRouter();
 const ventaRouter = new VentaRouter();
 const inventarioRouter = new InventarioRouter();
 const reportRouter = new ReportRouter();
+const proveedRouter = new ProveedRouter();
 
 const passportClass = new PassportClass()
 
@@ -77,7 +79,7 @@ export class App {
         this.app.use(ventaRouter.getRouter());
         this.app.use(inventarioRouter.getRouter());
         this.app.use(reportRouter.getRouter());
-
+        this.app.use(proveedRouter.getRouter());
     }
 
     /**
