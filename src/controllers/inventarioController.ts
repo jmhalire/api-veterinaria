@@ -67,31 +67,6 @@ export class InventarioController {
         }
     }
 
-    // =============    proveeedores   ================
-    public async saveProveedor(req: Request, res: Response): Promise<Response> {
-        try {
-            const datos = <Proveedor>req.body;
-            const newProvee = getRepository(Proveedor).create(datos);
-            await getRepository(Proveedor).save(newProvee);
-            return res.json({ message: 'Nuevo proveedor guardado' })
-        } catch (error) {
-            return res.status(400).json(error)
-        }
-    }
-    public async getProveedores(req: Request, res: Response): Promise<Response> {
-        try {
-            const provedores = await createQueryBuilder("Proveedor")
-                .orderBy("Proveedor.Nombre")
-                .leftJoinAndSelect("Proveedor.productos", "productos")
-                .leftJoinAndSelect("productos.categoria", "categoria")
-                .getMany();
-            return res.json(provedores);
-
-        } catch (error) {
-            return res.status(400).json(error);
-        }
-    }
-
     // =============    categorias   ================
     public async saveCategoria(req: Request, res: Response): Promise<Response> {
         try {

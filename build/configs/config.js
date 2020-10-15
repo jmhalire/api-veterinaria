@@ -15,16 +15,18 @@ exports.default = {
         "subscribersDir": "src/subscriber"
     }
 };
-// export default {
+
+
+// exports.default = {
 //     "type": "mysql",
 //     "host": "localhost",
 //     "port": 3306,
 //     "username": "root",
-//     "password": "jmhalire",
+//     "password": "jmhalire@MYSQL12",
 //     "database": "dbveterinaria",
 //     "synchronize": true,
 //     "logging": false,
-//     "entities": ["src/models/*.ts"],
+//     "entities": [path_1.join(__dirname, '../models/*{.ts,.js}')],
 //     "migrations": ["src/migration/*.ts"],
 //     "subscribers": ["src/subscriber/*.ts"],
 //     "cli": {
@@ -32,4 +34,4 @@ exports.default = {
 //         "migrationsDir": "src/migration",
 //         "subscribersDir": "src/subscriber"
 //     }
-// }
+// };

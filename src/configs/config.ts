@@ -19,7 +19,7 @@ export default {
     "host": "localhost",
     "port": 3306,
     "username": "root",
-    "password": "jmhalire",
+    "password": "jmhalire@MYSQL12",
     "database": "dbveterinaria",
     "synchronize": true,
     "logging": false,

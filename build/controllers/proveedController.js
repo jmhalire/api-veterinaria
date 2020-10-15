@@ -36,59 +36,52 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MacotaController = void 0;
+exports.ProveedController = void 0;
 var typeorm_1 = require("typeorm");
-var mascota_1 = require("../models/mascota");
-var MacotaController = /** @class */ (function () {
-    function MacotaController() {
+var proveedor_1 = require("../models/proveedor");
+//import { User } from "../models/usuario";
+var ProveedController = /** @class */ (function () {
+    function ProveedController() {
     }
-    //CREAR UN NUEVO USUARIO
-    MacotaController.prototype.createMascota = function (req, res) {
+    //CREAR UN NUEVO PROVEEDOR
+    ProveedController.prototype.createProveed = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var datos, mascotaNombre, mascotaDuenio, newMascota, error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 5, , 6]);
-                        datos = req.body;
-                        console.log(datos);
-                        return [4 /*yield*/, typeorm_1.getRepository(mascota_1.Mascota).findOne({ Nombres: datos.Nombres })];
-                    case 1:
-                        mascotaNombre = _a.sent();
-                        if (!mascotaNombre) return [3 /*break*/, 3];
-                        return [4 /*yield*/, typeorm_1.getRepository(mascota_1.Mascota).findOne({ cliente: datos.cliente })];
-                    case 2:
-                        mascotaDuenio = _a.sent();
-                        if (mascotaDuenio) {
-                            return [2 /*return*/, res.status(400).json({ value: false, message: "Ya existe una mascota de nombre " + datos.Nombres })];
-                        }
-                        _a.label = 3;
-                    case 3:
-                        newMascota = typeorm_1.getRepository(mascota_1.Mascota).create(datos);
-                        return [4 /*yield*/, typeorm_1.getRepository(mascota_1.Mascota).save(newMascota)];
-                    case 4:
-                        _a.sent();
-                        return [2 /*return*/, res.json({ message: datos.Nombres.toUpperCase() + "...  Nueva mascota agregada." })];
-                    case 5:
-                        error_1 = _a.sent();
-                        return [2 /*return*/, res.status(400).json(error_1)];
-                    case 6: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    //OBTENEMOS TODOS LOS USUARIOS
-    MacotaController.prototype.getMascotas = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var client, error_2;
+            var datos, newProveedor, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, typeorm_1.getRepository(mascota_1.Mascota).find()];
+                        datos = req.body;
+                        newProveedor = typeorm_1.getRepository(proveedor_1.Proveedor).create(datos);
+                        return [4 /*yield*/, typeorm_1.getRepository(proveedor_1.Proveedor).save(newProveedor)];
                     case 1:
-                        client = _a.sent();
-                        return [2 /*return*/, res.json(client)];
+                        _a.sent();
+                        return [2 /*return*/, res.json({ message: datos.Nombre.toUpperCase() + "...  Nuevo proveedor agregado." })];
+                    case 2:
+                        error_1 = _a.sent();
+                        return [2 /*return*/, res.status(400).json(error_1)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //OBTENEMOS TODOS LOS proveedore
+    ProveedController.prototype.getProveeds = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var listProveed, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, typeorm_1.createQueryBuilder("Proveedor")
+                                .orderBy("Proveedor.Nombre")
+                                .leftJoinAndSelect("Proveedor.productos", "productos")
+                                .leftJoinAndSelect("productos.categoria", "categoria")
+                                .getMany()];
+                    case 1:
+                        listProveed = _a.sent();
+                        //const client = await getRepository(Cliente).find({Estado: 1}); 
+                        return [2 /*return*/, res.json(listProveed)];
                     case 2:
                         error_2 = _a.sent();
                         return [2 /*return*/, res.status(404).json({ error: error_2 })];
@@ -97,100 +90,126 @@ var MacotaController = /** @class */ (function () {
             });
         });
     };
-    MacotaController.prototype.getMascota = function (req, res) {
+    ProveedController.prototype.getProveed = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var mascotaOne, error_3;
+            var proveedorOne, error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, typeorm_1.createQueryBuilder("Mascota")
-                                .leftJoinAndSelect("Mascota.cliente", "cliente")
-                                .leftJoinAndSelect("Mascota.vacunas", "vacunas")
-                                .leftJoinAndSelect("Mascota.citas", "citas")
-                                .leftJoinAndSelect("Mascota.visitas", "visitas")
-                                .where("Mascota.id = :id", { id: req.params.id })
+                        return [4 /*yield*/, typeorm_1.createQueryBuilder("Proveedor")
+                                .leftJoinAndSelect("Proveedor.productos", "producto")
+                                .where("Proveedor.id = :id", { id: req.params.id })
                                 .getOne()];
                     case 1:
-                        mascotaOne = _a.sent();
-                        return [2 /*return*/, res.json(mascotaOne)];
+                        proveedorOne = _a.sent();
+                        return [2 /*return*/, res.json(proveedorOne)];
                     case 2:
                         error_3 = _a.sent();
-                        return [3 /*break*/, 3];
+                        return [2 /*return*/, res.status(404).json({ error: error_3 })];
                     case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    //EDITAR USUARIO
-    MacotaController.prototype.updateMascota = function (req, res) {
+    ProveedController.prototype.getProveedProductos = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, mascot, error_4;
+            var id, proveed, proveeds, error_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 5, , 6]);
-                        id = req.body.id;
-                        return [4 /*yield*/, typeorm_1.getRepository(mascota_1.Mascota).findOne(id)];
+                        id = req.params.id;
+                        return [4 /*yield*/, typeorm_1.getRepository(proveedor_1.Proveedor).findOne(id)];
                     case 1:
-                        mascot = _a.sent();
-                        if (!mascot) return [3 /*break*/, 3];
-                        typeorm_1.getRepository(mascota_1.Mascota).merge(mascot, req.body);
-                        return [4 /*yield*/, typeorm_1.getRepository(mascota_1.Mascota).save(mascot)];
+                        proveed = _a.sent();
+                        if (!((proveed === null || proveed === void 0 ? void 0 : proveed.Nombre) !== null)) return [3 /*break*/, 3];
+                        return [4 /*yield*/, typeorm_1.createQueryBuilder("Proveedor")
+                                .leftJoinAndSelect("Proveedor.productos", "producto")
+                                .where("Producto.id = :id", { id: id })
+                                .getOne()];
                     case 2:
-                        _a.sent();
-                        return [2 /*return*/, res.json({ message: 'los datos se actualizaron correctamente' })];
-                    case 3: return [2 /*return*/, res.status(404).json({ message: "No existe la mascota" })];
+                        proveeds = _a.sent();
+                        return [2 /*return*/, res.json(proveeds)];
+                    case 3: return [2 /*return*/, res.status(404).json({ value: false, message: 'No existe proveedor' })];
                     case 4: return [3 /*break*/, 6];
                     case 5:
                         error_4 = _a.sent();
-                        return [2 /*return*/, res.json(error_4)];
+                        return [3 /*break*/, 6];
                     case 6: return [2 /*return*/];
                 }
             });
         });
     };
-    //ELIMINAR UN USUARIO
-    MacotaController.prototype.deleteMascota = function (req, res) {
+    //EDITAR PROVEEDOR
+    ProveedController.prototype.updateProveed = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var error_5;
+            var id, proveed, error_5;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 5, , 6]);
+                        id = req.body.id;
+                        return [4 /*yield*/, typeorm_1.getRepository(proveedor_1.Proveedor).findOne(id)];
+                    case 1:
+                        proveed = _a.sent();
+                        if (!proveed) return [3 /*break*/, 3];
+                        typeorm_1.getRepository(proveedor_1.Proveedor).merge(proveed, req.body);
+                        return [4 /*yield*/, typeorm_1.getRepository(proveedor_1.Proveedor).save(proveed)];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/, res.json({ message: 'Los datos se actualizaron correctamente' })];
+                    case 3: return [2 /*return*/, res.status(404).json({ message: "No existe proveedor" })];
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        error_5 = _a.sent();
+                        return [2 /*return*/, res.json(error_5)];
+                    case 6: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //ELIMINAR PROVEEDOR
+    ProveedController.prototype.deleteProveed = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, typeorm_1.getRepository(mascota_1.Mascota).delete(req.params.id)];
+                        return [4 /*yield*/, typeorm_1.getRepository(proveedor_1.Proveedor).delete(req.params.id)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/, res.json({ value: true })];
                     case 2:
-                        error_5 = _a.sent();
-                        return [2 /*return*/, res.json(error_5)];
+                        error_6 = _a.sent();
+                        return [2 /*return*/, res.json(error_6)];
                     case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    //cantidad total de mascotas en el sistema
-    MacotaController.prototype.countMascota = function (req, res) {
+    //cantidad de proveedores registrados en el sistema
+    ProveedController.prototype.countProveed = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var count, error_6;
+            var count, error_7;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, typeorm_1.getRepository(mascota_1.Mascota)
-                                .createQueryBuilder("Mascota").getCount()];
+                        return [4 /*yield*/, typeorm_1.getRepository(proveedor_1.Proveedor)
+                                .createQueryBuilder("Proveedor").getCount()];
                     case 1:
                         count = _a.sent();
                         return [2 /*return*/, res.json({ count: count })];
                     case 2:
-                        error_6 = _a.sent();
-                        return [2 /*return*/, res.status(404).json(error_6)];
+                        error_7 = _a.sent();
+                        return [2 /*return*/, res.status(404).json(error_7)];
                     case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    return MacotaController;
+    return ProveedController;
 }());
-exports.MacotaController = MacotaController;
+exports.ProveedController = ProveedController;

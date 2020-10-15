@@ -29,6 +29,7 @@ export class ProveedController {
             const listProveed = await createQueryBuilder("Proveedor")
                 .orderBy("Proveedor.Nombre")
                 .leftJoinAndSelect("Proveedor.productos", "productos")
+                .leftJoinAndSelect("productos.categoria", "categoria")
                 .getMany();
 
             //const client = await getRepository(Cliente).find({Estado: 1}); 

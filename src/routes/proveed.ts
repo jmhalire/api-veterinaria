@@ -27,7 +27,6 @@ export class ProveedRouter {
         this.router.post('/proveed/add', passport.Authenticate(), proveedCrtl.createProveed)
         this.router.post('/proveed/edit', passport.Authenticate(), proveedCrtl.updateProveed );
         this.router.delete('/proveed/delete/:id', passport.Authenticate(), proveedCrtl.deleteProveed);
-
     }
 
     /**

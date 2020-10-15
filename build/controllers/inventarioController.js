@@ -39,7 +39,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.InventarioController = void 0;
 var typeorm_1 = require("typeorm");
 var producto_1 = require("../models/producto");
-var proveedor_1 = require("../models/proveedor");
 var categoria_1 = require("../models/categoria");
 var InventarioController = /** @class */ (function () {
     function InventarioController() {
@@ -141,55 +140,10 @@ var InventarioController = /** @class */ (function () {
             });
         });
     };
-    // =============    proveeedores   ================
-    InventarioController.prototype.saveProveedor = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var datos, newProvee, error_5;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        datos = req.body;
-                        newProvee = typeorm_1.getRepository(proveedor_1.Proveedor).create(datos);
-                        return [4 /*yield*/, typeorm_1.getRepository(proveedor_1.Proveedor).save(newProvee)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/, res.json({ message: 'Nuevo proveedor guardado' })];
-                    case 2:
-                        error_5 = _a.sent();
-                        return [2 /*return*/, res.status(400).json(error_5)];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    InventarioController.prototype.getProveedores = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var provedores, error_6;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, typeorm_1.createQueryBuilder("Proveedor")
-                                .orderBy("Proveedor.Nombre")
-                                .leftJoinAndSelect("Proveedor.productos", "productos")
-                                .leftJoinAndSelect("productos.categoria", "categoria")
-                                .getMany()];
-                    case 1:
-                        provedores = _a.sent();
-                        return [2 /*return*/, res.json(provedores)];
-                    case 2:
-                        error_6 = _a.sent();
-                        return [2 /*return*/, res.status(400).json(error_6)];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
     // =============    categorias   ================
     InventarioController.prototype.saveCategoria = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var datos, newCate, error_7;
+            var datos, newCate, error_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -201,8 +155,8 @@ var InventarioController = /** @class */ (function () {
                         _a.sent();
                         return [2 /*return*/, res.json({ message: 'Nueva categoria guardada' })];
                     case 2:
-                        error_7 = _a.sent();
-                        return [2 /*return*/, res.status(400).json(error_7)];
+                        error_5 = _a.sent();
+                        return [2 /*return*/, res.status(400).json(error_5)];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -210,7 +164,7 @@ var InventarioController = /** @class */ (function () {
     };
     InventarioController.prototype.getCategorProducts = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var categoria, error_8;
+            var categoria, error_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -224,8 +178,8 @@ var InventarioController = /** @class */ (function () {
                         categoria = _a.sent();
                         return [2 /*return*/, res.json(categoria)];
                     case 2:
-                        error_8 = _a.sent();
-                        return [2 /*return*/, res.status(404).json(error_8)];
+                        error_6 = _a.sent();
+                        return [2 /*return*/, res.status(404).json(error_6)];
                     case 3: return [2 /*return*/];
                 }
             });

@@ -19,6 +19,7 @@ var service_1 = require("./routes/service");
 var venta_1 = require("./routes/venta");
 var inventario_1 = require("./routes/inventario");
 var reportRouter_1 = require("./routes/reportRouter");
+var proveed_1 = require("./routes/proveed");
 var passport_2 = require("./controllers/passport");
 //creamos los objetos de las clases de routes
 var indexRouter = new index_1.IndexRouter();
@@ -30,10 +31,11 @@ var serviceRouter = new service_1.ServiceRouter();
 var ventaRouter = new venta_1.VentaRouter();
 var inventarioRouter = new inventario_1.InventarioRouter();
 var reportRouter = new reportRouter_1.ReportRouter();
+var proveedRouter = new proveed_1.ProveedRouter();
 var passportClass = new passport_2.PassportClass();
 var App = /** @class */ (function () {
     function App() {
-        this.port = process.env.PORT || 8080;
+        this.port = process.env.PORT || 5200;
         this.app = express_1.default();
         this.settings();
         this.middlewares();
@@ -69,6 +71,7 @@ var App = /** @class */ (function () {
         this.app.use(ventaRouter.getRouter());
         this.app.use(inventarioRouter.getRouter());
         this.app.use(reportRouter.getRouter());
+        this.app.use(proveedRouter.getRouter());
     };
     /**
      * startServer (metodo que inia nuestro servidor)
