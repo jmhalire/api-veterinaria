@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc --build",
     "dev": "nodemon src/server.ts --exec ts-node",
-    "start": "node build/server.js"
+    "start": "node build/server.js",
+    "stop-linux": "killall node"
   },
   "keywords": [],
   "author": "",

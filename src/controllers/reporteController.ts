@@ -1,3 +1,4 @@
+import { log } from "console";
 import { Request, Response } from "express"
 import request from "request"
 import { getRepository, createQueryBuilder, getConnection } from "typeorm";
@@ -26,16 +27,16 @@ export class ReporteController {
     //obtenemos los cinco productos mas vendidos
     public async getProductFavory(req: Request, res: Response) {
         try {
+            log
             const productSuma = await getRepository(DetalleVenta)
                 .createQueryBuilder("DetalleVenta")
                 .limit(10)
                 .orderBy("ProductCantidad", "DESC")
-                .select("DetalleVenta.id")
+                .select("DetalleVenta.producto")
                 .leftJoinAndSelect("DetalleVenta.producto", "producto")
                 .addSelect("SUM(DetalleVenta.Cantidad)", "ProductCantidad")
                 .groupBy("DetalleVenta.producto")
                 .getRawMany();
-
             return res.json(productSuma);
 
         } catch (error) {

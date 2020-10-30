@@ -107,7 +107,7 @@ var UserController = /** @class */ (function () {
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, typeorm_1.getRepository(usuario_1.User).find({
                                 select: ["id", "Names", "FirstName", "LastName", "Celular", "Address", "Email", "Role", "CreatedAt", "UpdatedAt"],
-                                where: { Estado: 1 }
+                                where: { Estado: 1 },
                             })];
                     case 1:
                         users = _a.sent();

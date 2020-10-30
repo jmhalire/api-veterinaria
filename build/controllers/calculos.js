@@ -34,7 +34,7 @@ var Functions = /** @class */ (function () {
             datos.push(dato);
             datos;
         }
-        return datos;
+        return datos.reverse();
     };
     //calculoDatos para obtener total de ingrsos por mese
     Functions.prototype.calculoDatos = function (datos, ventas) {

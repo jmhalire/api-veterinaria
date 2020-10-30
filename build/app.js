@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.App = void 0;
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
+//var morgan_1 = __importDefault(require("morgan"));
 var helmet_1 = __importDefault(require("helmet"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var passport_1 = __importDefault(require("passport"));
@@ -35,7 +36,7 @@ var proveedRouter = new proveed_1.ProveedRouter();
 var passportClass = new passport_2.PassportClass();
 var App = /** @class */ (function () {
     function App() {
-        this.port = process.env.PORT || 5200;
+        this.port = process.env.PORT || 8080;
         this.app = express_1.default();
         this.settings();
         this.middlewares();
@@ -53,6 +54,7 @@ var App = /** @class */ (function () {
     App.prototype.middlewares = function () {
         this.app.use(cors_1.default());
         this.app.use(helmet_1.default());
+        //this.app.use(morgan_1.default('dev'));
         this.app.use(body_parser_1.default.urlencoded({ extended: true }));
         this.app.use(express_1.default.json());
         this.app.use(passport_1.default.initialize());

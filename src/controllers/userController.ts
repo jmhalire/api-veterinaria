@@ -43,7 +43,7 @@ export class UserController {
         try {
             const users = await getRepository(User).find({
                 select: ["id", "Names", "FirstName", "LastName", "Celular", "Address", "Email", "Role", "CreatedAt", "UpdatedAt"],
-                where: { Estado: 1 }
+                where: { Estado: 1 },
         
             });
             if (users.length > 0) {

@@ -3,12 +3,12 @@ import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet"
 import bodyParser from "body-parser";
-import passport from "passport"
+import passport from "passport";
 
 //importamos todas las rutas que existen para agregar a express
 import { IndexRouter } from "./routes/index";
-import { AuthRouter } from "./routes/auth"
-import { UserRouter } from "./routes/user"
+import { AuthRouter } from "./routes/auth";
+import { UserRouter } from "./routes/user";
 import { ClientRouter } from "./routes/client";
 import { MascotRouter } from "./routes/mascot";
 import { ServiceRouter } from "./routes/service";
@@ -16,7 +16,6 @@ import { VentaRouter } from "./routes/venta";
 import { InventarioRouter } from "./routes/inventario";
 import { ReportRouter } from "./routes/reportRouter";
 import { ProveedRouter } from "./routes/proveed";
-
 
 import { PassportClass } from "./controllers/passport";
 
@@ -43,7 +42,7 @@ export class App {
         this.app = express();
         this.settings();
         this.middlewares();
-        this.Routes()        
+        this.Routes();        
     }
     /**
      * settings

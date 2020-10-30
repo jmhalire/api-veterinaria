@@ -31,8 +31,7 @@ export class ReportRouter {
         this.router.get('/report/ingreso-meses', passport.Authenticate(), roleAdmin.verificate, reportCrtl.getIngresoXmeses);
         this.router.get('/report/ingreso-hoy', passport.Authenticate(), roleAdmin.verificate, reportCrtl.getIngresoHoy);
         this.router.get('/report/visita-meses', passport.Authenticate(), roleAdmin.verificate, reportCrtl.getvisitasXmeses);
-        this.router.get('/report/product-favory', passport.Authenticate(), roleAdmin.verificate, reportCrtl.getProductFavory);
-
+        this.router.get('/report/top_10_product', passport.Authenticate(), roleAdmin.verificate, reportCrtl.getProductFavory);
         this.router.get('/weather', reportCrtl.getWether);
     }
 

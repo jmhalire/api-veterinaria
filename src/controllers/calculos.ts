@@ -44,7 +44,7 @@ export class Functions {
         datos.push(dato)
         datos;
       }
-      return datos
+      return datos.reverse();
     }
   
     //calculoDatos para obtener total de ingrsos por mese

@@ -40,6 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReporteController = void 0;
+var console_1 = require("console");
 var request_1 = __importDefault(require("request"));
 var typeorm_1 = require("typeorm");
 //type
@@ -58,11 +59,12 @@ var ReporteController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
+                        console_1.log;
                         return [4 /*yield*/, typeorm_1.getRepository(detalleVenta_1.DetalleVenta)
                                 .createQueryBuilder("DetalleVenta")
                                 .limit(10)
                                 .orderBy("ProductCantidad", "DESC")
-                                .select("DetalleVenta.id")
+                                .select("DetalleVenta.producto")
                                 .leftJoinAndSelect("DetalleVenta.producto", "producto")
                                 .addSelect("SUM(DetalleVenta.Cantidad)", "ProductCantidad")
                                 .groupBy("DetalleVenta.producto")
