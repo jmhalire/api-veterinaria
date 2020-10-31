@@ -40,13 +40,19 @@ var Functions = /** @class */ (function () {
     };
     //calculoDatos para obtener total de ingrsos por mese
     Functions.prototype.calculoDatos = function (datos, ventas) {
-        ventas.forEach(function (element, index) {
+        ventas.forEach(function (element) {
             var dat = new Date(element.CreatedAt).toLocaleString().split(' ')[0].split('/');
             for (var i = 0; i < datos.length; i++) {
-                if (datos[i].nroMes.toString() === dat[1].toString() &&
+                //en heroku
+                if (datos[i].nroMes.toString() === dat[0].toString() &&
                     datos[i].anio.toString() === dat[2].toString()) {
                     datos[i].acumulado += element.Total;
                 }
+                //localhost
+                /*if(datos[i].nroMes.toString()===dat[1].toString() &&
+                  datos[i].anio.toString()===dat[2].toString()){
+                  datos[i].acumulado += element.Total;
+                }*/
             }
         });
         return datos;
