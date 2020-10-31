@@ -57,9 +57,11 @@ export class ReporteController {
             let labels: string[] = calc.getlabels(datosFecha);
             let datos: Pormeses[] = calc.calculoDatos(datosFecha, ventas);
             let backgroundColor = calc.backgroundColor();
-            let borderColor = calc.borderColor()
+            let borderColor = calc.borderColor();
 
-            return res.json({ datos, labels, backgroundColor, borderColor })
+            setTimeout(() => {
+                return res.json({ datos, labels, backgroundColor, borderColor })
+            }, 1000);
 
         } catch (error) {
             return res.status(404).json(error);
@@ -83,7 +85,10 @@ export class ReporteController {
                 .leftJoinAndSelect("Visita.cliente", "cliente")
                 .getMany();
             const visitasHoy = calc.visitasDeHoy(listVisitas);
-            return res.json({ ventasHoy, visitasHoy })
+
+            setTimeout(() => {
+                return res.json({ ventasHoy, visitasHoy })  
+            }, 1000);
 
         } catch (error) {
             return res.status(404).json(error);

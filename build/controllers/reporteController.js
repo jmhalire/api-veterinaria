@@ -83,7 +83,7 @@ var ReporteController = /** @class */ (function () {
     //reporte de ingresos por meses
     ReporteController.prototype.getIngresoXmeses = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var ventas, datosFecha, labels, datos, backgroundColor, borderColor, error_2;
+            var ventas, datosFecha, labels_1, datos_1, backgroundColor_1, borderColor_1, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -95,11 +95,14 @@ var ReporteController = /** @class */ (function () {
                     case 1:
                         ventas = _a.sent();
                         datosFecha = calc.datosFecha([]);
-                        labels = calc.getlabels(datosFecha);
-                        datos = calc.calculoDatos(datosFecha, ventas);
-                        backgroundColor = calc.backgroundColor();
-                        borderColor = calc.borderColor();
-                        return [2 /*return*/, res.json({ datos: datos, labels: labels, backgroundColor: backgroundColor, borderColor: borderColor })];
+                        labels_1 = calc.getlabels(datosFecha);
+                        datos_1 = calc.calculoDatos(datosFecha, ventas);
+                        backgroundColor_1 = calc.backgroundColor();
+                        borderColor_1 = calc.borderColor();
+                        setTimeout(function () {
+                            return res.json({ datos: datos_1, labels: labels_1, backgroundColor: backgroundColor_1, borderColor: borderColor_1 });
+                        }, 1000);
+                        return [3 /*break*/, 3];
                     case 2:
                         error_2 = _a.sent();
                         return [2 /*return*/, res.status(404).json(error_2)];
@@ -111,7 +114,7 @@ var ReporteController = /** @class */ (function () {
     //reporte de ingresos del dia de hoy
     ReporteController.prototype.getIngresoHoy = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var ventas, ventasHoy, listVisitas, visitasHoy, error_3;
+            var ventas, ventasHoy_1, listVisitas, visitasHoy_1, error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -122,15 +125,18 @@ var ReporteController = /** @class */ (function () {
                                 .getMany()];
                     case 1:
                         ventas = _a.sent();
-                        ventasHoy = calc.ventasDeHoy(ventas);
+                        ventasHoy_1 = calc.ventasDeHoy(ventas);
                         return [4 /*yield*/, typeorm_1.createQueryBuilder("Visita")
                                 .leftJoinAndSelect("Visita.mascota", "mascota")
                                 .leftJoinAndSelect("Visita.cliente", "cliente")
                                 .getMany()];
                     case 2:
                         listVisitas = _a.sent();
-                        visitasHoy = calc.visitasDeHoy(listVisitas);
-                        return [2 /*return*/, res.json({ ventasHoy: ventasHoy, visitasHoy: visitasHoy })];
+                        visitasHoy_1 = calc.visitasDeHoy(listVisitas);
+                        setTimeout(function () {
+                            return res.json({ ventasHoy: ventasHoy_1, visitasHoy: visitasHoy_1 });
+                        }, 1000);
+                        return [3 /*break*/, 4];
                     case 3:
                         error_3 = _a.sent();
                         return [2 /*return*/, res.status(404).json(error_3)];
