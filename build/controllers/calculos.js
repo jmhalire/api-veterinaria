@@ -32,7 +32,6 @@ var Functions = /** @class */ (function () {
             };
             mes -= 1;
             datos.push(dato);
-            datos;
         }
         return datos.reverse();
     };
