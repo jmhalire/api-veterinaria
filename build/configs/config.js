@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var path_1 = require("path");
+//heroku
 exports.default = {
     "type": "mysql",
     "url": process.env.MYSQL_ADDON_URI,
@@ -15,7 +16,8 @@ exports.default = {
         "subscribersDir": "src/subscriber"
     }
 };
-/*exports.default = {
+//localhost
+/*export default {
     "type": "mysql",
     "host": "localhost",
     "port": 3306,
@@ -24,7 +26,7 @@ exports.default = {
     "database": "dbveterinaria",
     "synchronize": true,
     "logging": false,
-    "entities": [path_1.join(__dirname, '../models/*{.ts,.js}')],
+    "entities": [ join(__dirname, '../models/*{.ts,.js}') ],
     "migrations": ["src/migration/*.ts"],
     "subscribers": ["src/subscriber/*.ts"],
     "cli": {
@@ -32,4 +34,4 @@ exports.default = {
         "migrationsDir": "src/migration",
         "subscribersDir": "src/subscriber"
     }
-};*/
+}*/

@@ -63,8 +63,17 @@ var Functions = /** @class */ (function () {
     //calculo para obtener numero de clientes que visitan por meses
     Functions.prototype.calculoClientesXmeses = function (datos, visitas) {
         visitas.forEach(function (visita, index) {
-            var dat = new Date(visita.CreatedAt).toLocaleString().split(' ')[0].split('/');
+            //en heroku
+            var dat = new Date(visita.CreatedAt).toLocaleString().split(',')[0].split('/');
+            //local
+            //let dat = new Date(element.CreatedAt).toLocaleString().split(' ')[0].split('/');
             for (var i = 0; i < datos.length; i++) {
+                //en heroku
+                if (datos[i].nroMes.toString() === dat[0].toString() &&
+                    datos[i].anio.toString() === dat[2].toString()) {
+                    datos[i].acumulado += 1;
+                }
+                //localhost
                 if (datos[i].nroMes.toString() === dat[1].toString() &&
                     datos[i].anio.toString() === dat[2].toString()) {
                     datos[i].acumulado += 1;
