@@ -75,8 +75,17 @@ export class Functions {
     //calculo para obtener numero de clientes que visitan por meses
     public calculoClientesXmeses(datos: Pormeses[],visitas: Visita[]): any{
       visitas.forEach((visita,index)=>{
-        let dat = new Date(visita.CreatedAt).toLocaleString().split(' ')[0].split('/');
+        //en heroku
+        let dat = new Date(visita.CreatedAt).toLocaleString().split(',')[0].split('/');
+        //local
+        //let dat = new Date(element.CreatedAt).toLocaleString().split(' ')[0].split('/');
         for (let i = 0; i < datos.length; i++) {
+          //en heroku
+          if(datos[i].nroMes.toString()===dat[0].toString() && 
+            datos[i].anio.toString()===dat[2].toString()){
+            datos[i].acumulado += 1;
+          }
+          //localhost
           if(datos[i].nroMes.toString()===dat[1].toString() && 
             datos[i].anio.toString()===dat[2].toString()){
             datos[i].acumulado += 1;

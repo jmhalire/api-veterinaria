@@ -1,5 +1,6 @@
 import { join } from "path";
-/* export default {
+//heroku
+export default {
     "type": "mysql",
     "url": process.env.MYSQL_ADDON_URI,
     "synchronize": true,
@@ -12,9 +13,9 @@ import { join } from "path";
         "migrationsDir": "src/migration",
         "subscribersDir": "src/subscriber"
     }
-}; */
-
-export default {
+};
+//localhost
+/*export default {
     "type": "mysql",
     "host": "localhost",
     "port": 3306,
@@ -31,4 +32,4 @@ export default {
         "migrationsDir": "src/migration",
         "subscribersDir": "src/subscriber"
     }
-}
+}*/

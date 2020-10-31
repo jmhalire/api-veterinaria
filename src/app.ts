@@ -1,6 +1,6 @@
 import express, { Application } from "express";
 import cors from "cors";
-import morgan from "morgan";
+//import morgan from "morgan";
 import helmet from "helmet"
 import bodyParser from "body-parser";
 import passport from "passport";
@@ -57,7 +57,7 @@ export class App {
     public middlewares(): void {
         this.app.use(cors());
         this.app.use(helmet());
-        this.app.use(morgan('dev'));
+        //this.app.use(morgan('dev'));
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(express.json());
         this.app.use(passport.initialize());
