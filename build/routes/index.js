@@ -53,11 +53,7 @@ var IndexRouter = /** @class */ (function () {
     IndexRouter.prototype.routes = function () {
         var _this = this;
         this.router.get('/', function (req, res) {
-            //res.send('bienvenidos');
-            let date = new Date('2020-09-18 03:18:59.894531').toLocaleString()
-            let date2 = new Date('2020-09-18 03:18:59.894531').toLocaleString().split(' ')
-            let date3 = new Date('2020-09-18 03:18:59.894531').toLocaleString().split(',')
-            res.json({date,date2, date3});
+            res.send('bienvenidos');
         });
         this.router.get('/index', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var users, error_1;
