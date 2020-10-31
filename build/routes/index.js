@@ -53,7 +53,10 @@ var IndexRouter = /** @class */ (function () {
     IndexRouter.prototype.routes = function () {
         var _this = this;
         this.router.get('/', function (req, res) {
-            res.send('bienvenidos');
+            let dat = new Date().toLocaleDateString();
+            let da = new Date()
+            res.json({dat,da})
+            //res.send('bienvenidos');
         });
         this.router.get('/index', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var users, error_1;
