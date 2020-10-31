@@ -17,7 +17,10 @@ var Functions = /** @class */ (function () {
         var fec = this.nombreMeses();
         var dat = new Date().toLocaleDateString();
         var fecha = dat.split('/');
-        var mes = parseInt(fecha[1]);
+        //en heroku
+        var mes = parseInt(fecha[0]);
+        //localhost
+        //let mes =  parseInt(fecha[1]);
         var anio = parseInt(fecha[2]);
         for (var i = 0; i < 12; i++) {
             if (mes === 0) {

@@ -83,7 +83,7 @@ var ReporteController = /** @class */ (function () {
     //reporte de ingresos por meses
     ReporteController.prototype.getIngresoXmeses = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var ventas_1, datosFecha_1, error_2;
+            var ventas, datosFecha, labels, datos, backgroundColor, borderColor, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -93,16 +93,13 @@ var ReporteController = /** @class */ (function () {
                                 .leftJoinAndSelect("Venta.detalleVentas", "detalleVentas")
                                 .getMany()];
                     case 1:
-                        ventas_1 = _a.sent();
-                        datosFecha_1 = calc.datosFecha([]);
-                        setTimeout(function () {
-                            var labels = calc.getlabels(datosFecha_1);
-                            var datos = calc.calculoDatos(datosFecha_1, ventas_1);
-                            var backgroundColor = calc.backgroundColor();
-                            var borderColor = calc.borderColor();
-                            return res.json({ datos: datos, labels: labels, backgroundColor: backgroundColor, borderColor: borderColor });
-                        }, 500);
-                        return [3 /*break*/, 3];
+                        ventas = _a.sent();
+                        datosFecha = calc.datosFecha([]);
+                        labels = calc.getlabels(datosFecha);
+                        datos = calc.calculoDatos(datosFecha, ventas);
+                        backgroundColor = calc.backgroundColor();
+                        borderColor = calc.borderColor();
+                        return [2 /*return*/, res.json({ datos: datos, labels: labels, backgroundColor: backgroundColor, borderColor: borderColor })];
                     case 2:
                         error_2 = _a.sent();
                         return [2 /*return*/, res.status(404).json(error_2)];

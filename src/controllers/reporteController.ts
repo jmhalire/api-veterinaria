@@ -55,13 +55,11 @@ export class ReporteController {
                 .leftJoinAndSelect("Venta.detalleVentas", "detalleVentas")
                 .getMany();
             let datosFecha: Pormeses[] = calc.datosFecha([]);
-            setTimeout(() => {
-                let labels: string[] = calc.getlabels(datosFecha);
-                let datos: Pormeses[] = calc.calculoDatos(datosFecha, ventas);
-                let backgroundColor = calc.backgroundColor();
-                let borderColor = calc.borderColor();
-                return res.json({ datos, labels, backgroundColor, borderColor })
-            }, 500);
+            let labels: string[] = calc.getlabels(datosFecha);
+            let datos: Pormeses[] = calc.calculoDatos(datosFecha, ventas);
+            let backgroundColor = calc.backgroundColor();
+            let borderColor = calc.borderColor();
+            return res.json({ datos, labels, backgroundColor, borderColor })
         } catch (error) {
             return res.status(404).json(error);
         }
@@ -86,7 +84,7 @@ export class ReporteController {
             const visitasHoy = calc.visitasDeHoy(listVisitas);
 
             setTimeout(() => {
-                return res.json({ ventasHoy, visitasHoy })  
+                return res.json({ ventasHoy, visitasHoy })
             }, 1000);
 
         } catch (error) {

@@ -27,7 +27,10 @@ export class Functions {
       const fec = this.nombreMeses();
       let dat = new Date().toLocaleDateString();
       let fecha = dat.split('/');
-      let mes =  parseInt(fecha[1]);
+      //en heroku
+      let mes =  parseInt(fecha[0]);
+      //localhost
+      //let mes =  parseInt(fecha[1]);
       let anio = parseInt( fecha[2]);
       for (let i = 0; i < 12; i++) {
         if(mes===0){
