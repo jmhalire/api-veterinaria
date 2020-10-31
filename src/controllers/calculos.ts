@@ -51,13 +51,19 @@ export class Functions {
   
     //calculoDatos para obtener total de ingrsos por mese
     public calculoDatos(datos: Pormeses[],ventas: Venta[]): Pormeses[] {
-      ventas.forEach((element, index)=> {
+      ventas.forEach((element)=> {
         let dat = new Date(element.CreatedAt).toLocaleString().split(' ')[0].split('/');
         for (let i = 0; i < datos.length; i++) {
-          if(datos[i].nroMes.toString()===dat[1].toString() && 
+          //en heroku
+          if(datos[i].nroMes.toString()===dat[0].toString() && 
             datos[i].anio.toString()===dat[2].toString()){
             datos[i].acumulado += element.Total;
           }
+          //localhost
+          /*if(datos[i].nroMes.toString()===dat[1].toString() && 
+            datos[i].anio.toString()===dat[2].toString()){
+            datos[i].acumulado += element.Total;
+          }*/
         }
       });
       return datos;
