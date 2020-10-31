@@ -42,7 +42,6 @@ export class Functions {
         }
         mes -= 1
         datos.push(dato)
-        datos;
       }
       return datos.reverse();
     }
