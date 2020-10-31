@@ -1,5 +1,6 @@
 import { log } from "console";
 import { Request, Response } from "express"
+import { promises } from "fs";
 import request from "request"
 import { getRepository, createQueryBuilder, getConnection } from "typeorm";
 
@@ -54,15 +55,13 @@ export class ReporteController {
                 .leftJoinAndSelect("Venta.detalleVentas", "detalleVentas")
                 .getMany();
             let datosFecha: Pormeses[] = calc.datosFecha([]);
-            let labels: string[] = calc.getlabels(datosFecha);
-            let datos: Pormeses[] = calc.calculoDatos(datosFecha, ventas);
-            let backgroundColor = calc.backgroundColor();
-            let borderColor = calc.borderColor();
-
             setTimeout(() => {
+                let labels: string[] = calc.getlabels(datosFecha);
+                let datos: Pormeses[] = calc.calculoDatos(datosFecha, ventas);
+                let backgroundColor = calc.backgroundColor();
+                let borderColor = calc.borderColor();
                 return res.json({ datos, labels, backgroundColor, borderColor })
-            }, 1000);
-
+            }, 500);
         } catch (error) {
             return res.status(404).json(error);
         }

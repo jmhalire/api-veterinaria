@@ -83,7 +83,7 @@ var ReporteController = /** @class */ (function () {
     //reporte de ingresos por meses
     ReporteController.prototype.getIngresoXmeses = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var ventas, datosFecha, labels_1, datos_1, backgroundColor_1, borderColor_1, error_2;
+            var ventas_1, datosFecha_1, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -93,15 +93,15 @@ var ReporteController = /** @class */ (function () {
                                 .leftJoinAndSelect("Venta.detalleVentas", "detalleVentas")
                                 .getMany()];
                     case 1:
-                        ventas = _a.sent();
-                        datosFecha = calc.datosFecha([]);
-                        labels_1 = calc.getlabels(datosFecha);
-                        datos_1 = calc.calculoDatos(datosFecha, ventas);
-                        backgroundColor_1 = calc.backgroundColor();
-                        borderColor_1 = calc.borderColor();
+                        ventas_1 = _a.sent();
+                        datosFecha_1 = calc.datosFecha([]);
                         setTimeout(function () {
-                            return res.json({ datos: datos_1, labels: labels_1, backgroundColor: backgroundColor_1, borderColor: borderColor_1 });
-                        }, 1000);
+                            var labels = calc.getlabels(datosFecha_1);
+                            var datos = calc.calculoDatos(datosFecha_1, ventas_1);
+                            var backgroundColor = calc.backgroundColor();
+                            var borderColor = calc.borderColor();
+                            return res.json({ datos: datos, labels: labels, backgroundColor: backgroundColor, borderColor: borderColor });
+                        }, 500);
                         return [3 /*break*/, 3];
                     case 2:
                         error_2 = _a.sent();
