@@ -74,10 +74,10 @@ var Functions = /** @class */ (function () {
                     datos[i].acumulado += 1;
                 }
                 //localhost
-                if (datos[i].nroMes.toString() === dat[1].toString() &&
-                    datos[i].anio.toString() === dat[2].toString()) {
-                    datos[i].acumulado += 1;
-                }
+                /*if(datos[i].nroMes.toString()===dat[1].toString() &&
+                  datos[i].anio.toString()===dat[2].toString()){
+                  datos[i].acumulado += 1;
+                }*/
             }
         });
         return datos;

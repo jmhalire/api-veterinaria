@@ -86,10 +86,10 @@ export class Functions {
             datos[i].acumulado += 1;
           }
           //localhost
-          if(datos[i].nroMes.toString()===dat[1].toString() && 
+          /*if(datos[i].nroMes.toString()===dat[1].toString() && 
             datos[i].anio.toString()===dat[2].toString()){
             datos[i].acumulado += 1;
-          }
+          }*/
         }
       });
       return datos;
